@@ -1,39 +1,34 @@
-const express = require('express');
-const PORT = process.env.PORT || 3000;
+const express = require("express");
+const path = require("path");
 require("dotenv").config();
 
-const helmet = require('helmet');
+const helmet = require("helmet");
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get('/',(req,res)=>{
-    res.redirect('/register');
-})
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "index.html"));
+});
 
-app.get("/home", isAuthenticated, (req, res) => {
-    res.send(`
-        <h1>Welcome ${req.session.user.email}</h1>
-        <a href="/read">Read Users</a><br><br>
-        <a href="/logout">Logout</a>
-    `);
+app.get("/login", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "login.html"));
 });
 
 app.get("/register", (req, res) => {
-  res.send(`
-<form action="/register" method="POST">
-<input type="email" name="email" placeholder="Enter Email" required> <br><br>
-<input type="password" name="password" placeholder="Enter Password" required> <br><br>
-<input type="password" name="confirmPassword" placeholder="Confirm Password" required> <br><br>
-<button type="submit"> Register</button>
-</form>`
-)
+    res.sendFile(path.join(__dirname, "views", "register.html"));
 });
 
+app.use((req, res) => {
+    res.status(404).send("404 - Page Not Found");
+});
 
-app.listen(PORT,(req,res)=>{
-    console.log(`Server is running on http://localhost${PORT}`);
-})
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
