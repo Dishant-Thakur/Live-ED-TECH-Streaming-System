@@ -76,10 +76,10 @@ header button i{
     font-size: 2rem;
     }
 
-    .content-section div{
-        font-size: 25px;
+     .content-section div{
+        font-size: 16px;
         font-weight: 400;
-    }
+    } 
 }
 
 @media (min-width:0px) and (max-width:991px){
@@ -270,7 +270,6 @@ header button i{
 }
 
 .skill-card{
-
     background:white;
     height:80px;
     display:flex;
@@ -283,19 +282,16 @@ header button i{
 }
 
 .skill-card img{
-
     width:42px;
     height:42px;
 }
 
 .skill-card span{
-
-    font-size:28px;
+    font-size:22px;
     font-weight:500;
 }
 
 .skill-card:hover{
-
     transform:translateY(-8px);
     box-shadow:0 18px 40px rgba(0,0,0,.15);
     cursor:pointer;
@@ -314,7 +310,7 @@ header button i{
     height:70px;
 }
 .skill-card span{
-    font-size:20px;
+    font-size:18px;
 }
 }
 
