@@ -6,12 +6,49 @@ const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(helmet());
+app.use(helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+
+                scriptSrc: [
+                    "'self'",
+                    "https://cdn.jsdelivr.net"
+                ],
+
+                styleSrc: [
+                    "'self'",
+                    "'unsafe-inline'",
+                    "https://cdn.jsdelivr.net",
+                    "https://cdnjs.cloudflare.com"
+                ],
+
+                fontSrc: [
+                    "'self'",
+                    "https://cdn.jsdelivr.net",
+                    "https://cdnjs.cloudflare.com",
+                    "data:"
+                ],
+
+                imgSrc: [
+                    "'self'",
+                    "data:",
+                    "blob:"
+                ],
+
+                connectSrc: [
+                    "'self'",
+                    "https://cdn.jsdelivr.net"
+                ]
+            }
+        }
+    })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
+app.get(["/","index.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 

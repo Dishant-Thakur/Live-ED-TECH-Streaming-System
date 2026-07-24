@@ -1,23 +1,49 @@
-//name number email  course  timing learning-mode qualifiaction status
 function form_validation() {
-  document.addEventListener("click", (e) => {
-    e.preventDefault();
+  const form = document.getElementById("enquiryForm");
 
-    const name = document.getElementById("name").value;
-    const number = document.getElementById("number").value;
-    const email = document.getElementById("email").value;
-    const course = document.getElementById("course");
-    const timing = document.getElementById("timing");
-    const mode = document.getElementById("learning-mode");
-    const qualification = document.getElementById("qualification");
-    const status = document.getElementById("status");
+  form.addEventListener("submit", (e) => {
+    const name = document.getElementById("name").value.trim();
+    const number = document.getElementById("number").value.replace(/\s/g, "");
+    const email = document.getElementById("email").value.trim();
+    const course = document.getElementById("course").value;
+    const timing = document.getElementById("timing").value;
+    const mode = document.getElementById("learning-mode").value;
+    const qualification = document.getElementById("qualification").value;
+    const status = document.getElementById("status").value;
 
-    if(name == ' '){
-        return false;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^[6-9]\d{9}$/;
+
+    if (
+      name === "" ||
+      number === "" ||
+      email === "" ||
+      course === "" ||
+      timing === "" ||
+      mode === "" ||
+      qualification === "" ||
+      status === ""
+    ) {
+      e.preventDefault();
+      alert("All fields are mandatory");
+      return;
+    }
+
+    if (!emailPattern.test(email)) {
+      e.preventDefault();
+      alert("Please enter a valid email");
+      return;
+    }
+
+    if (!phonePattern.test(number)) {
+      e.preventDefault();
+      alert("Please enter a valid 10-digit phone number");
+      return;
     }
   });
 }
 
+form_validation();
 
 document.addEventListener("DOMContentLoaded", function () {
   const slidesContainer = document.querySelector("#courseSlides");

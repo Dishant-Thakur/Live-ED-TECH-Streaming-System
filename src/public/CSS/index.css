@@ -132,6 +132,7 @@ header button i{
     padding:80px 0;
 }
 
+
 .banner-content img{
     width:100%;
     max-width:520px;
@@ -151,7 +152,7 @@ header button i{
 }
 
 .banner-content-last .btn{
-    width:200px;
+    width:auto;
     height:55px;
     font-size:18px;
 }
@@ -175,8 +176,7 @@ header button i{
 
 .banner-content-last .d-flex{
     justify-content:center;
-}
-
+  }
 }
 
 @media (max-width:576px){
@@ -193,7 +193,7 @@ header button i{
 }
 
 .banner-content-last .btn{
-    width:170px;
+    width:auto;
     height:45px;
     font-size:15px;
   }
