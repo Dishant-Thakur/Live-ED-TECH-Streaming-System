@@ -24,7 +24,7 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/",(req,res)=>{
-    const {name, number, email, course, timing, mode, qualification, status, extraData} = req.body;
+    const {name, phone, email, course, timing, mode, qualification, status, goals} = req.body;
     if(!req.body){
         return res.send('Sorry no data');
     }

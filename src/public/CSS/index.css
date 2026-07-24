@@ -82,11 +82,27 @@ header button i{
     } 
 }
 
-@media (min-width:0px) and (max-width:991px){
+@media (min-width:200px) and (max-width:991px){
     .content-section{
         font-size: 1.1rem;
     }
+
+    .content-section div{
+        height : 70px;
+        justify-content: center !important;
+        align-items: center !important;
+
+    }
 }
+
+@media (min-width:992px){
+    .content-section div{
+        height : 70px;
+
+    }
+}
+
+
 
 .outer-container{
     display:flex;
@@ -95,9 +111,8 @@ header button i{
     max-width:1400px !important;
     min-height:200px !important;
 }
-.content-section{
-    max-width: 1300px;
-}
+
+
 @media(max-width:991px){
     .content-section{
     display: flex;
@@ -381,4 +396,8 @@ textarea.form-control{
 
 button{
     border-radius:10px;
+}
+
+#sendRequest{
+    width:auto
 }
