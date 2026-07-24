@@ -42,7 +42,6 @@ function form_validation() {
     }
   });
 }
-
 form_validation();
 
 document.addEventListener("DOMContentLoaded", function () {
