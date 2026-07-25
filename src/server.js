@@ -45,21 +45,20 @@ app.use(helmet({
         }
     })
 )
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/",enquiryRoutes);
 
-app.get(["/","/index.html"], (req, res) => {
+app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
 })
 
-app.get("/login", (req, res) => {
+app.get(["/login", "/login.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "login.html"));
 })
 
-app.get("/register", (req, res) => {
+app.get(["/register", "/register.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "register.html"));
 })
 

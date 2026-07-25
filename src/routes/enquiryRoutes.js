@@ -56,9 +56,9 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
     } = req.body;
 
     await transporter.sendMail({
-      from: `"EdTech Enquiry" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      replyTo: email,
+      from: `"EdTech" <${process.env.EMAIL_USER}>`,
+      to: email,
+      replyTo: process.env.EMAIL_USER,
       subject: `New Course Enquiry - ${course}`,
       html: `
     <div style="
@@ -220,7 +220,7 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                 ">
 
                     <p style="color:#666;">
-                        Reply to this email to contact
+                        Thanks for visit 
                         <strong>${name}</strong>.
                     </p>
 
@@ -245,6 +245,8 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
     </div>
     `,
     });
+    console.log('Email sent succesfully');
+
     return res
       .status(200)
       .send(
