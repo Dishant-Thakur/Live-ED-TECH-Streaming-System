@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Enquiry = require('../models/enquiryModel');
 const transporter = require("../utils/mailer");
 
 function validateEnquiry(req, res, next) {
@@ -246,7 +247,18 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
     `,
     });
     console.log('Email sent succesfully');
-
+    const enquiry = await Enquiry.create({
+      name : name,
+      phone : phone,
+      email : email,
+      course : course,
+      timing : timing,
+      mode : mode,
+      qualification :qualification,
+      status : status,
+      goals : goals,
+    });
+    
     return res
       .status(200)
       .send(

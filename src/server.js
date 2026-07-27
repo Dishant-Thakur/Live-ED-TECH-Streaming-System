@@ -1,11 +1,13 @@
 const express = require("express");
 const path = require("path");
+const connectDB = require("./utils/db")
 require("dotenv").config();
 
 const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
-const enquiryRoutes = require('./routes/enquiryRoutes');
+connectDB();
+const enquiryRoutes = require("./routes/enquiryRoutes");
 
 app.use(helmet({
         contentSecurityPolicy: {
@@ -50,6 +52,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/",enquiryRoutes);
 
+
 app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
 })
@@ -69,3 +72,5 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 })
+
+module.exports = app;
