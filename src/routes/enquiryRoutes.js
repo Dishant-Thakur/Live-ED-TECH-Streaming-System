@@ -6,7 +6,7 @@ const transporter = require("../utils/mailer");
 function validateEnquiry(req, res, next) {
   let { name, phone, email, course, timing, mode, qualification, status } =
     req.body;
-
+    console.log(req.body);
   name = name?.trim();
   email = email?.trim();
   phone = phone?.replace(/\s/g, "");
@@ -44,18 +44,7 @@ function validateEnquiry(req, res, next) {
 
 router.post("/enquiry", validateEnquiry, async (req, res) => {
   try {
-    const {
-      name,
-      phone,
-      email,
-      course,
-      timing,
-      mode,
-      qualification,
-      status,
-      goals,
-    } = req.body;
-
+    const {name, phone, email, course, timing, mode, qualification, status, goals,} = req.body;
     await transporter.sendMail({
       from: `"EdTech" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -246,6 +235,7 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
     </div>
     `,
     });
+
     console.log('Email sent succesfully');
     const enquiry = await Enquiry.create({
       name : name,

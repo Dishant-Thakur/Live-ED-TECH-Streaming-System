@@ -14,7 +14,6 @@ const enquirySchema = new mongoose.Schema({
 
     email :{
         type : String,
-        unique : true,
         trim : true,
     },
 
@@ -48,7 +47,7 @@ const enquirySchema = new mongoose.Schema({
     },
     date : {
         type : Date,
-        default : Date.now,
+        default : Date.now(),
     },
 })
 
