@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 const enquiryRoutes = require("./routes/enquiryRoutes");
 
-app.use(helmet({
+app.use(
+    helmet({
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
@@ -28,15 +29,16 @@ app.use(helmet({
 
                 fontSrc: [
                     "'self'",
-                    "https://cdn.jsdelivr.net",
                     "https://cdnjs.cloudflare.com",
+                    "https://use.fontawesome.com",
                     "data:"
                 ],
 
                 imgSrc: [
                     "'self'",
                     "data:",
-                    "blob:"
+                    "blob:",
+                    "https:"
                 ],
 
                 connectSrc: [
@@ -46,7 +48,7 @@ app.use(helmet({
             }
         }
     })
-)
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));

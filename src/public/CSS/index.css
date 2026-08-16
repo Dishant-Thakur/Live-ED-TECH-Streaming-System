@@ -481,22 +481,53 @@ button {
 }
 
 .footer-header{
+  color:white;
   padding:10px;
+  font-size: 17px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .ft-links{
-  list-style: none;
-  padding-left:5px;
+  padding-left:0px;
 }
 
 .ft-links li a{
-  color: #f5f7fa;
+  color: white;
+  font-size: 15px;
+  font-weight: 200;
   text-decoration: none;
 }
 
-.ft-links li a:hover{
-  text-decoration : underline;
+.footer-part{
+  background-color: #191970;
+  /* background-color: #3B3B3B; */
 }
 
-.footer-part{
-  background-color:  #0d6efd;
+.footer-text{
+  color: white;
+}
+
+.ft-details{
+  padding-left: 0px;
+  list-style: none;
+}
+
+.ft-details li {
+  font-size: 15px;
+  font-weight: 200;
+  padding : 3px
+}
+
+.ft-social{
+  display: flex;
+  gap:30px;
+  text-decoration: none;
+  list-style: none;
+}
+
+.ft-social ul li a{
+  color: white;
+  font-size: 26px;
+  font-weight: 200;
+  text-decoration: none;
 }
