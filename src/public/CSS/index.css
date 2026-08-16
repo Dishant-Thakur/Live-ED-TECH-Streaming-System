@@ -505,6 +505,8 @@ button {
 
 .footer-text{
   color: white;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .ft-details{
@@ -520,14 +522,11 @@ button {
 
 .ft-social{
   display: flex;
+  justify-content: center;
   gap:30px;
+  background-color: white;
+  font-size: 28px;
+  padding-left:0px;
   text-decoration: none;
   list-style: none;
-}
-
-.ft-social ul li a{
-  color: white;
-  font-size: 26px;
-  font-weight: 200;
-  text-decoration: none;
 }
