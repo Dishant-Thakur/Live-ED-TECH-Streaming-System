@@ -483,8 +483,8 @@ button {
 .footer-header{
   color:white;
   padding:10px;
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 19px;
+  font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
 .ft-links{
@@ -493,8 +493,8 @@ button {
 
 .ft-links li a{
   color: white;
-  font-size: 15px;
-  font-weight: 200;
+  font-size: 16px;
+  font-weight: 400;
   text-decoration: none;
 }
 
@@ -506,6 +506,8 @@ button {
 .footer-text{
   color: white;
   text-align: center;
+  font-size: 16px;
+  font-weight: 400;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -515,8 +517,8 @@ button {
 }
 
 .ft-details li {
-  font-size: 15px;
-  font-weight: 200;
+  font-size: 16px;
+  font-weight: 400;
   padding : 3px
 }
 
@@ -525,7 +527,7 @@ button {
   justify-content: center;
   gap:30px;
   background-color: white;
-  font-size: 28px;
+  font-size: 29px;
   padding-left:0px;
   text-decoration: none;
   list-style: none;
