@@ -22,16 +22,6 @@ const enquirySchema = new mongoose.Schema({
         required : true,
     },
 
-    timing :{
-        type : String,
-        required : true,
-    },
-
-     mode :{
-        type : String,
-        required : true,
-    },
-
     qualification : {
         type : String,
         required : true,
@@ -47,7 +37,7 @@ const enquirySchema = new mongoose.Schema({
     },
     date : {
         type : Date,
-        default : Date.now(),
+        default : Date.now,
     },
 })
 

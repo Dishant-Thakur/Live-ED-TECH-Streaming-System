@@ -7,7 +7,7 @@ const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
 connectDB();
-const enquiryRoutes = require("./routes/enquiryRoutes");
+const enquiryRoutes = require("./routes/enquiryRoute");
 
 app.use(
     helmet({
@@ -53,7 +53,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/",enquiryRoutes);
-
 
 app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));

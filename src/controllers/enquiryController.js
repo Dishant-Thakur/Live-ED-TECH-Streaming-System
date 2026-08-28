@@ -1,50 +1,9 @@
-const express = require("express");
-const router = express.Router();
 const Enquiry = require('../models/enquiryModel');
 const transporter = require("../utils/mailer");
 
-function validateEnquiry(req, res, next) {
-  let { name, phone, email, course, timing, mode, qualification, status } =
-    req.body;
-    console.log(req.body);
-  name = name?.trim();
-  email = email?.trim();
-  phone = phone?.replace(/\s/g, "");
-
-  if (
-    !name ||
-    !phone ||
-    !email ||
-    !course ||
-    !timing ||
-    !mode ||
-    !qualification ||
-    !status
-  ) {
-    return res.status(400).send("All fields are mandatory");
-  }
-
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phonePattern = /^[6-9]\d{9}$/;
-
-  if (!emailPattern.test(email)) {
-    return res.status(400).send("Invalid email");
-  }
-
-  if (!phonePattern.test(phone)) {
-    return res.status(400).send("Invalid phone number");
-  }
-
-  name = name.trim();
-  email = email.trim().toLowerCase();
-  phone = phone.replace(/\s/g, "");
-
-  next();
-}
-
-router.post("/enquiry", validateEnquiry, async (req, res) => {
+const enquityController = async(req,res)=>{
   try {
-    const {name, phone, email, course, timing, mode, qualification, status, goals,} = req.body;
+    let {name, phone, email, course, qualification, status, goals,} = req.body;
     await transporter.sendMail({
       from: `"EdTech" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -56,7 +15,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
         padding:30px 15px;
         font-family:Arial, sans-serif;
     ">
-
         <div style="
             max-width:650px;
             margin:auto;
@@ -82,7 +40,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
             </div>
 
             <div style="padding:30px;">
-
                 <h3 style="
                     color:#0d6efd;
                     margin-top:0;
@@ -90,13 +47,11 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                     Student Information
                 </h3>
 
-
                 <table style="
                     width:100%;
                     border-collapse:collapse;
                     font-size:15px;
                 ">
-
                     <tr>
                         <td style="padding:10px;font-weight:bold;">
                             Name
@@ -106,7 +61,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                             ${name}
                         </td>
                     </tr>
-
 
                     <tr style="background:#f8f9fa;">
                         <td style="padding:10px;font-weight:bold;">
@@ -118,7 +72,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                         </td>
                     </tr>
 
-
                     <tr>
                         <td style="padding:10px;font-weight:bold;">
                             Phone
@@ -129,7 +82,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                         </td>
                     </tr>
 
-
                     <tr style="background:#f8f9fa;">
                         <td style="padding:10px;font-weight:bold;">
                             Course
@@ -138,31 +90,8 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                         <td style="padding:10px;">
                             ${course}
                         </td>
-                    </tr>
-
-
-                    <tr>
-                        <td style="padding:10px;font-weight:bold;">
-                            Preferred Batch
-                        </td>
-
-                        <td style="padding:10px;">
-                            ${timing}
-                        </td>
-                    </tr>
-
-
-                    <tr style="background:#f8f9fa;">
-                        <td style="padding:10px;font-weight:bold;">
-                            Learning Mode
-                        </td>
-
-                        <td style="padding:10px;">
-                            ${mode}
-                        </td>
-                    </tr>
-
-
+                    </tr>>
+   
                     <tr>
                         <td style="padding:10px;font-weight:bold;">
                             Qualification
@@ -172,7 +101,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                             ${qualification}
                         </td>
                     </tr>
-
 
                     <tr style="background:#f8f9fa;">
                         <td style="padding:10px;font-weight:bold;">
@@ -185,7 +113,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                     </tr>
 
                 </table>
-
                 <div style="
                     margin-top:25px;
                     background:#f8f9fa;
@@ -201,7 +128,6 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                     ">
                         ${goals || "Not provided"}
                     </p>
-
                 </div>
 
                 <div style="
@@ -213,9 +139,7 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                         Thanks for visit 
                         <strong>${name}</strong>.
                     </p>
-
                 </div>
-
             </div>
 
             <div style="
@@ -225,13 +149,9 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
                 padding:15px;
                 font-size:13px;
             ">
-
                 EdTech Course Enquiry System
-
             </div>
-
         </div>
-
     </div>
     `,
     });
@@ -242,21 +162,16 @@ router.post("/enquiry", validateEnquiry, async (req, res) => {
       phone : phone,
       email : email,
       course : course,
-      timing : timing,
-      mode : mode,
       qualification :qualification,
       status : status,
       goals : goals,
     });
-    
-    return res
-      .status(200)
-      .send(
-        "<h2>Dear user your query send successfully.Our team will contact you further.</h2>",
-      );
+    await enquiry.save();
+    return res.status(200).send("<h2>Dear user your query send successfully.Our team will contact you further.</h2>");
   } catch (error) {
     console.error("Email error:", error);
     return res.status(500).send("Unable to submit enquiry");
   }
-});
-module.exports = router;
+}
+
+module.exports = enquityController;
