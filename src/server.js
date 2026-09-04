@@ -1,13 +1,26 @@
 const express = require("express");
 const path = require("path");
 const connectDB = require("./utils/db")
+const rateLimiter = require('express-rate-limit');
 require("dotenv").config();
 
 const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
 connectDB();
-const enquiryRoutes = require("./routes/enquiryRoute");
+
+const limiter = rateLimiter({
+    windowMs: 1000 * 60 * 15,
+    limit: 5,
+    statusCode: 429,
+    message: {
+        status: 429,
+        error: 'Too many requests',
+        message: "Too many attempts done. Please try again after 15 minutes."
+    },
+});
+const userRoutes = require("./routes/userRoute.js");
+const enquiryRoutes = require("./routes/enquiryRoute.js");
 
 app.use(
     helmet({
@@ -52,7 +65,9 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/",enquiryRoutes);
+app.use('/api/v1', limiter, userRoutes);
+app.use("/", limiter, enquiryRoutes);
+
 
 app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));

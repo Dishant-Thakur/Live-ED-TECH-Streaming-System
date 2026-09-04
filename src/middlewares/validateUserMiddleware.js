@@ -1,21 +1,19 @@
-const express = require("epxress");
-const router = express.Router();
-
 const validateUserRegistration = (req, res, next) => {
     let { name, phone, email, password, confirm_pass } = req.body;
-    if (!name || !email || !password || !confirm_pass) {
+
+    if (!name || !phone || !email || !password || !confirm_pass) {
         return res.status(400).send("All fields are mandatory");
     }
 
-    name = name?.trim();
-    email = email?.trim();
-    phone = phone?.replace(/\s/g, "");
+    name = name.trim();
+    email = email.trim().toLowerCase();
+    phone = phone.toString().replace(/\s/g, "");
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phonePattern = /^[6-9]\d{9}$/;
 
-    if (!email.test(emailPattern)) {
-        return res.status(400).send("Invalid email");
+    if (!emailPattern.test(email)) {
+        return res.status(400).send("Invalid email format");
     }
 
     if (!phonePattern.test(phone)) {
@@ -23,11 +21,11 @@ const validateUserRegistration = (req, res, next) => {
     }
 
     if (password.length < 8) {
-        return res.status(400).send("Password length more than 8 or above characters");
+        return res.status(400).send("Password must be 8 or more characters");
     }
 
     if (password !== confirm_pass) {
-        return res.status(400).send("Password not matched");
+        return res.status(400).send("Passwords do not match");
     }
 
     req.body.name = name;
@@ -38,27 +36,26 @@ const validateUserRegistration = (req, res, next) => {
 };
 
 const validateUserLogin = (req, res, next) => {
-    let { name, email, password} = req.body;
-    if (!name || !email || !password) {
+    let { email, password } = req.body;
+
+    if (!email || !password) {
         return res.status(400).send("All fields are mandatory");
     }
 
-    name = name?.trim();
-    email = email?.trim();
+    email = email.trim().toLowerCase();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email.test(emailPattern)) {
-        return res.status(400).send("Invalid email");
+    if (!emailPattern.test(email)) {
+        return res.status(400).send("Invalid email format");
     }
 
     if (password.length < 8) {
-        return res.status(400).send("Password length more than 8 or above characters");
+        return res.status(400).send("Password must be 8 or more characters");
     }
 
-    req.body.name = name;
     req.body.email = email;
 
     next();
 };
 
-module.exports = {validateUserRegistration, validateUserLogin};
+module.exports = { validateUserRegistration, validateUserLogin };

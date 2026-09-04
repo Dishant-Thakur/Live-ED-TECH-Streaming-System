@@ -1,32 +1,39 @@
-const validateUserLogin = '../middlwares/validateUserMiddleware';
-const user = '../models/userModel';
-const  bcrypt= require('bcrypt');
+const user = require('../models/userModel');
+const bcrypt = require('bcrypt');
 
-const usercontroller = async function (req,res,next){
-    try{
-    let {name, email, password} = req.body;
-    let decryptPassword = await bcrypt.compare(password, decryptPassword);
+const userController = async function (req, res, next) {
+    try {
+        const { name, email, password } = req.body;
+        const user_data = await user.findOne({
+            email: email
+        });
 
-    if(password != decryptPassword){
-       
+        if (!user_data) {
+            return res.status(400).json({
+                status: false,
+                message: "Email not found. Register first."
+            });
+        }
+
+        const passwordMatch = await bcrypt.compare(password,user_data.password);
+        if (!passwordMatch) {
+            return res.status(400).json({
+                status: false,
+                message: "Password does not match."
+            });
+        }
+
+        req.user = user_data;
+        next();
+
+    } catch (error) {
+        console.log("Error:", error);
+
+        return res.status(500).json({
+            status: false,
+            message: "Internal server error"
+        });
     }
+};
 
-
-
-    let user_data = await user.find({
-        
-        email : email,
-        password : password,
-
-
-      })
-
-      
-    next();
-    }
-
-        catch(error){
-    console.log('Error: ',error);
-    }
-    
-}
+module.exports = userController;
