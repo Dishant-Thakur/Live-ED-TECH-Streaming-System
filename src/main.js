@@ -1,3 +1,4 @@
+
 const weatherData = {
     origin: 'Himachal',
     country: 'India (North-India)',
@@ -31,6 +32,6 @@ async function main() {
     } catch (error) {
         console.log('Error:', error.message);
     }
-}
+    }
 
 main();

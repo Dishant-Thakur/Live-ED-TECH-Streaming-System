@@ -20,27 +20,14 @@ The application focuses on performance, maintainability, scalability, and user e
 * Secure Authentication
 * Browse All Courses
 * Search Courses
-* Filter Courses by Category
 * View Course Details
 * Watch Live Streaming Classes
 * Access Recorded Lectures
-* View Instructor Information
-* Course Progress Tracking
 * Responsive Dashboard
 * Mobile-Friendly Interface
 
 ---
 
-## 👨‍🏫 Instructor Features
-
-* Instructor Profile
-* Upload Course Details
-* Schedule Live Classes
-* Upload Recorded Videos
-* Manage Course Content
-* View Student Enrollment
-
----
 
 ## 👨‍💼 Admin Features
 
@@ -52,7 +39,6 @@ The application focuses on performance, maintainability, scalability, and user e
 * Monitor Live Sessions
 * Website Analytics
 * User Management
-* Course Approval System
 
 ---
 
@@ -65,7 +51,6 @@ Features include:
 * Live video streaming
 * Upcoming live sessions
 * Join live classes
-* Real-time attendance
 * Live chat support (Future Scope)
 * Screen sharing (Future Scope)
 * Class recordings
@@ -82,12 +67,9 @@ The platform can support multiple categories such as:
 * Data Science
 * Cyber Security
 * Cloud Computing
-* DevOps
 * Python Programming
 * Java Development
 * C++ Programming
-* Oracle Database
-* UI/UX Design
 * Mobile App Development
 ---
 
@@ -101,8 +83,6 @@ The project provides
 * Student Testimonials
 * Instructor Cards
 * Live Class Banner
-* Learning Statistics
-* FAQ Section
 * Contact Form
 * Footer with Social Links
 
@@ -128,8 +108,8 @@ The project provides
 
 ## Database
 
-* MySQL
-
+* MongoDB
+* Redis
 ---
 
 ## Development Tools
@@ -212,7 +192,7 @@ The **Model** represents the application's data and business logic.
 
 Responsibilities:
 
-* Interact with the MySQL database
+* Interact with the MongoDB database
 * Perform CRUD operations
 * Define data structures
 * Handle database queries
@@ -226,25 +206,6 @@ Examples:
 * Instructor Model
 
 ---
-
-### 📌 View
-The **View** is responsible for presenting data to the user.
-
-Responsibilities:
-
-* Display web pages
-* Render course information
-* Show dashboards
-* Display forms
-* Provide a responsive interface
-
-Examples:
-
-* Homepage
-* Course Page
-* Student Dashboard
-* Instructor Dashboard
-* Admin Dashboard
 
 ---
 
@@ -285,7 +246,7 @@ Client Request
      Model
       │
       ▼
-   MySQL Database
+   MongoDB Database
       │
       ▼
    Controller
@@ -302,94 +263,12 @@ Browser Response
 # 🔐 Security Features
 
 * Password Encryption (bcrypt)
-* JWT Authentication
+* Session based Authentication
 * Session Management
 * Input Validation
-* SQL Injection Prevention
 * Environment Variables (.env)
 * Protected Routes
 * Error Handling
-
----
-
-# 🚀 Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/your-username/live-learning-platform.git
-```
-
-Move into the project directory:
-
-```bash
-cd live-learning-platform
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Create a `.env` file and configure your environment variables.
-
-Start the development server:
-
-```bash
-npm start
-```
-
-Open your browser and visit:
-
-```text
-http://localhost:3000
-```
-
----
-
-# 🔮 Future Enhancements
-
-* Payment Gateway Integration
-* Certificate Generation
-* AI-Based Course Recommendations
-* Live Chat During Classes
-* Discussion Forums
-* Assignment Submission
-* Quiz and Assessments
-* Student Leaderboard
-* Notifications
-* Email Verification
-* Password Reset
-* Video Progress Tracking
-* Dark Mode
-* Mobile Application
-* Cloud Storage Integration
-* Docker Deployment
-* CI/CD Pipeline
-
----
-
-# 🎯 Learning Outcomes
-
-This project demonstrates practical experience with:
-
-* Full Stack Web Development
-* MVC Architecture
-* RESTful APIs
-* Authentication & Authorization
-* MySQL Database Design
-* Responsive Web Design
-* CRUD Operations
-* Git & GitHub Workflow
-* Clean Code Practices
-* Modern Web Development
-
----
-
-# 🤝 Contributing
-
-Contributions, feature requests, and bug reports are welcome. Feel free to fork the repository, create a new branch, make your changes, and submit a pull request.
 
 ---
 

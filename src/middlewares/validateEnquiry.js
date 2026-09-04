@@ -1,10 +1,10 @@
 function validateEnquiry(req, res, next) {
 let { name, phone, email, course, qualification, status } = req.body;
-  console.log(req.body);
 
   name = name?.trim();
   email = email?.trim().toLowerCase();
   phone = phone?.replace(/\s/g, "");
+  console.log(req.body);
 
   if (!name || !phone || !email || !course || !qualification || !status) {
     return res.status(400).send("All fields are mandatory");

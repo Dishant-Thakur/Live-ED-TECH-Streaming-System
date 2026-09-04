@@ -168,8 +168,9 @@ const enquityController = async(req,res)=>{
     });
     await enquiry.save();
     return res.status(200).send("<h2>Dear user your query send successfully.Our team will contact you further.</h2>");
-  } catch (error) {
-    console.error("Email error:", error);
+  } 
+  catch (error) {
+    console.error("Error:", error);
     return res.status(500).send("Unable to submit enquiry");
   }
 }

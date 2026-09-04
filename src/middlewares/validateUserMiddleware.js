@@ -55,11 +55,10 @@ const validateUserLogin = (req, res, next) => {
         return res.status(400).send("Password length more than 8 or above characters");
     }
 
-
     req.body.name = name;
     req.body.email = email;
 
     next();
 };
 
-module.exports = validateUserRegistration;
+module.exports = {validateUserRegistration, validateUserLogin};
