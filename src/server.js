@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const connectDB = require("./utils/db")
+const session = require('express-session'); 
 const rateLimiter = require('express-rate-limit');
 require("dotenv").config();
 
@@ -10,15 +11,16 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 const limiter = rateLimiter({
-    windowMs: 1000 * 60 * 15,
+    windowMs: 1000 * 60 * 3,
     limit: 5,
     statusCode: 429,
     message: {
         status: 429,
         error: 'Too many requests',
-        message: "Too many attempts done. Please try again after 15 minutes."
+        message: "Too many attempts done. Please try again after 3 minutes."
     },
 });
+const registerRoutes = require('./routes/registerRoute.js');
 const userRoutes = require("./routes/userRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
 
@@ -63,10 +65,23 @@ app.use(
     })
 );
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true , limit : '15kb'}));
+app.use(session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 3,
+            secure: false,
+            sameSite: "lax",
+            httpOnly: false,
+        }
+    })
+);
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/api/v1', limiter, userRoutes);
-app.use("/", limiter, enquiryRoutes);
+app.use("api/v1", registerRoutes);
+app.use("/api/v1", userRoutes);
+app.use("/", enquiryRoutes);
 
 
 app.get(["/", "/index.html"], (req, res) => {
@@ -82,7 +97,7 @@ app.get(["/register", "/register.html"], (req, res) => {
 })
 
 app.use((req, res) => {
-    res.status(404).send("HTTP ERROR 404 - Page Not Found");
+    res.status(404).send("<h2> OOPS! HTTP ERROR-404 Page Not Found </h2>");
 })
 
 app.listen(PORT, () => {

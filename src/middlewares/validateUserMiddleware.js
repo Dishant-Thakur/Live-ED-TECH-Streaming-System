@@ -1,7 +1,7 @@
 const validateUserRegistration = (req, res, next) => {
-    let { name, phone, email, password, confirm_pass } = req.body;
+    let {role, name, phone, email, password, confirm_pass } = req.body;
 
-    if (!name || !phone || !email || !password || !confirm_pass) {
+    if (!role || !name || !phone || !email || !password || !confirm_pass) {
         return res.status(400).send("All fields are mandatory");
     }
 
@@ -36,9 +36,9 @@ const validateUserRegistration = (req, res, next) => {
 };
 
 const validateUserLogin = (req, res, next) => {
-    let { email, password } = req.body;
+    let { role, email, password } = req.body;
 
-    if (!email || !password) {
+    if (!role || !email || !password) {
         return res.status(400).send("All fields are mandatory");
     }
 

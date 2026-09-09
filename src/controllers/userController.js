@@ -1,10 +1,10 @@
-const user = require('../models/userModel');
+const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
 const userController = async function (req, res, next) {
     try {
         const { name, email, password } = req.body;
-        const user_data = await user.findOne({
+        let user_data = await User.findOne({
             email: email
         });
 
@@ -23,7 +23,7 @@ const userController = async function (req, res, next) {
             });
         }
 
-        req.user = user_data;
+        req.User = user_data;
         next();
 
     } catch (error) {

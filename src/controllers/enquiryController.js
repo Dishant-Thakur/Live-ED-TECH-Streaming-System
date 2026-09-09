@@ -90,7 +90,7 @@ const enquityController = async(req,res)=>{
                         <td style="padding:10px;">
                             ${course}
                         </td>
-                    </tr>>
+                    </tr>
    
                     <tr>
                         <td style="padding:10px;font-weight:bold;">
@@ -164,7 +164,7 @@ const enquityController = async(req,res)=>{
       course : course,
       qualification :qualification,
       status : status,
-      goals : goals,
+      goals : goals || 'Not provided',
     });
     await enquiry.save();
     return res.status(200).send("<h2>Dear user your query send successfully.Our team will contact you further.</h2>");

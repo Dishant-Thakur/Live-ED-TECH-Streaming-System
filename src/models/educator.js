@@ -38,5 +38,5 @@ const educatorSchema = new mongoose.Schema({
   },
 );
 
-const educator = mongoose.model("educator", educatorSchema);
-module.exports = educator;
+const Educator = mongoose.model("Educator", educatorSchema);
+module.exports = Educator;
