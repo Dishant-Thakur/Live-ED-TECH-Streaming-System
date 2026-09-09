@@ -30,7 +30,7 @@
     "nodemon": "^3.1.14"
   },
   "engines": {
-    "node": "25.x"
+    "node": "24.x"
   },
   "allowScripts": {
     "bcrypt@6.0.0": true
