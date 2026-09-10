@@ -27,6 +27,7 @@ const registerRoutes = require('./routes/registerRoute.js');
 const userRoutes = require("./routes/userRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
 
+
 app.use(
     helmet({
         contentSecurityPolicy: {
@@ -67,6 +68,7 @@ app.use(
         }
     })
 );
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true , limit : '15kb'}));
 app.use(session({
@@ -82,7 +84,6 @@ app.use(session({
     })
 );
 
-app.use(express.static(path.join(__dirname, "public")));
 app.use("api/v1", registerRoutes);
 app.use("/api/v1", userRoutes);
 app.use("/", enquiryRoutes);
