@@ -1,12 +1,15 @@
-const express = require("express");
-const path = require("path");
-const connectDB = require("./utils/db")
-const session = require('express-session'); 
-const rateLimiter = require('express-rate-limit');
 require("dotenv").config();
 
+const express = require("express");
+const path = require("path");
+
+const connectDB = require("./utils/db")
+const session = require('express-session'); 
+
+const rateLimiter = require('express-rate-limit');
 const helmet = require("helmet");
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 connectDB();
 
@@ -78,6 +81,8 @@ app.use(session({
         }
     })
 );
+console.log("SESSION_SECRET exists:", !!process.env.SESSION_SECRET);
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use("api/v1", registerRoutes);
 app.use("/api/v1", userRoutes);
