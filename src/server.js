@@ -84,7 +84,7 @@ app.use(session({
     })
 );
 
-app.use("api/v1", registerRoutes);
+app.use("/api/v1", registerRoutes);
 app.use("/api/v1", userRoutes);
 app.use("/", enquiryRoutes);
 
@@ -100,6 +100,11 @@ app.get(["/login", "/login.html"], (req, res) => {
 app.get(["/register", "/register.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "register.html"));
 })
+
+app.get(["/userDashboard", "/userDashboard.html"], (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "userDashboard.html"));
+})
+
 
 app.use((req, res) => {
     res.status(404).send("<h2> OOPS! HTTP ERROR-404 Page Not Found </h2>");

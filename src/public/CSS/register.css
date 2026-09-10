@@ -27,9 +27,7 @@ body {
 
 .register-card {
     display: grid;
-
     grid-template-columns: 58.5% 41.5%;
-
     min-height: 842px;
 }
 
@@ -69,15 +67,6 @@ body {
     color: #56627a;
 }
 
-.role-tabs {
-    width: 380px;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 13px;
-    margin-bottom: 25px;
-}
-
 .role-tab {
     height: 45px;
     padding: 0 10px;
@@ -85,24 +74,10 @@ body {
     border-radius: 6px;
     background: #ffffff;
     font-family: "Inter", sans-serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
     color: #29334a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     cursor: pointer;
-}
-
-.role-tab:hover{
-    color: #0767ed;
-    border-color: #69a0ff;
-    background: #fbfdff;
-}
-
-.role-tab i {
-    font-size: 22px;
 }
 
 .field {
@@ -226,29 +201,6 @@ body {
     filter: brightness(0.96);
 }
 
-.or-divider {
-    width: 100%;
-    margin: 16px 0;
-    display: flex;
-    align-items: center;
-    gap: 11px;
-}
-
-.or-divider span {
-    flex: 1;
-    height: 1px;
-    background: #e5e9ef;
-}
-
-.or-divider small {
-    flex: 0 0 auto;
-    color: #68748a;
-    font-family: "Inter", sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-}
-
-
 .login-text {
     margin: 19px 0 0;
     text-align: center;
@@ -260,9 +212,7 @@ body {
 
 .login-text a {
     color: #0568ee;
-
     text-decoration: none;
-
     font-weight: 500;
 }
 
@@ -321,10 +271,9 @@ body {
     position: absolute;
     z-index: 2;
     display: block;
-    width: 100%;
+    width: auto;
     height: auto;
-    left: 0;
-    bottom: 0;
+    margin: 250px 150px;
     object-fit: cover;
     object-position: center bottom;
 }
@@ -451,10 +400,6 @@ body {
 
     .register-heading p {
         font-size: 14px;
-    }
-
-    .role-tabs {
-        grid-template-columns: 1fr;
     }
 
     .social-row {

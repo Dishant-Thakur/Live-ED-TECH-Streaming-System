@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EduNest-Register</title>
+    <title>Edunest User Registration Page</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,33 +18,23 @@
     <main class="register-page">
       <section class="register-card">
         <div class="register-left">
-          <img src="/IMAGES/Edunest logo.png" alt="EduNest" class="edunest-logo" />
-          <div class="register-heading">
-            <h1 class="fs-1">Create Your Account</h1>
-            <p class="fs-5">Start your learning journey with EduNest</p>
+          <img src="/IMAGES/Edunest logo.png" alt="Edunest" class="edunest-logo" />
+          <div class="register-heading text-center">
+            <h1 class="fs-2">Create Your Account</h1>
+            <p class="fs-5">Start your learning journey with Edunest</p>
           </div>
 
-          <div class="role-tabs">
-            <button type="button" class="role-tab" name = "role" value = "user">
-              <i class="bi bi-person"></i>
-              <span class="fw-medium"> User </span>
-            </button>
-
-            <button type="button" class="role-tab" name = "role" value = "faculty">
-              <i class="bi
-               bi-mortarboard"></i>
-
-              <span class="fw-medium"> Faculty </span>
-            </button>
-
-            <button type="button" class="role-tab" role = "role" value = "admin">
-              <i class="bi bi-shield"></i>
-
-              <span class="fw-medium"> Admin </span>
-            </button>
+          <form  action = "api/v1/auth/register" id="registerForm" method="post">
+           <div class="role-tabs">
+            <label for="role" class="fs-6 fw-bold">Please Select Role </label>
+            <select name="role" id="select_role" class="role-tab" required>
+              <option value="" aria-disabled>select</option>
+              <option value="user">User</option>
+              <option value="faculty">Faculty</option>
+              <option value="admin">Admin</option>
+            </select>
           </div>
 
-          <form id="registerForm">
             <div class="field">
               <label for="name" class="fs-6"> Full Name </label>
 
@@ -108,7 +98,6 @@
                 <button
                   type="button"
                   class="eye-btn"
-                  onclick="togglePassword('password', this)"
                   aria-label="Show password"
                 >
                   <i class="bi bi-eye"></i>
@@ -134,7 +123,6 @@
                 <button
                   type="button"
                   class="eye-btn"
-                  onclick="togglePassword('confirmPassword', this)"
                   aria-label="Show confirm password"
                 >
                   <i class="bi bi-eye"></i>
@@ -145,36 +133,26 @@
             <div class="terms">
               <input type="checkbox" id="terms" required />
 
-              <label for="terms" class = "fs-6">
-                I agree to the
-                <a href="#"> Terms of Service </a>
-                and
+              <label for="terms" class = "fs-6">I agree to the
+                <a href="#"> Terms of Service </a> and
                 <a href="#"> Privacy Policy </a>
               </label>
             </div>
 
-            <button type="submit" class="signup-btn fs-6">Sign Up</button>
-            <div class="or-divider">
-              <span></span>
-
-              <small class = "fs-6"> or sign up with </small>
-
-              <span></span>
-            </div>
-
+            <button type="submit" class="signup-btn fs-6" onclick="alert('Register success')">Sign Up</button>
             <p class="login-text fs-6">
               Already have an account?
-
-              <a href="#" class="fs-6"> Login </a>
+              <a href="login.html" class="fs-6"> Login </a>
             </p>
           </form>
         </div>
 
         <aside class="register-right">
           <div class="right-content">
-            <h2>
+            <h2 class="text-center mt-5">
               Your Future Starts with
-              <span> EduNest </span>
+              <span> EduNest </span> <br>
+              <p class="fs-6 fw-bold">Gain skills, take experience and achieve goals</p>
             </h2>
           </div> <br>
           <img
