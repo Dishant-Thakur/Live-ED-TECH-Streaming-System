@@ -81,7 +81,6 @@ app.use(session({
         }
     })
 );
-console.log("SESSION_SECRET exists:", !!process.env.SESSION_SECRET);
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("api/v1", registerRoutes);
