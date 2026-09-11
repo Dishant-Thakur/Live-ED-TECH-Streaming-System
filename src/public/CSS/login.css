@@ -1,0 +1,408 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    color: #0b193d;
+    background: #f3f7fd;
+    -webkit-font-smoothing: antialiased;
+}
+
+.register-page {
+    width: min(1510px, calc(100% - 22px));
+    margin: 27px auto;
+    background: #ffffff;
+    border: 1px solid #e1e7ef;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(24, 54, 100, 0.08);
+}
+
+.register-card {
+    display: grid;
+    grid-template-columns: 58.5% 41.5%;
+    min-height: 842px;
+}
+
+.register-left {
+    position: relative;
+    background: #ffffff;
+    padding: 26px 38px 28px;
+}
+
+.edunest-logo {
+    display: block;
+    width: 230px;
+    height: 100px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.register-heading {
+    margin-top: 52px;
+    margin-bottom: 18px;
+}
+
+.register-heading h1 {
+    margin: 0 0 8px;
+    font-size: 29px;
+    line-height: 1.22;
+    font-weight: 700;
+    letter-spacing: -0.75px;
+    color: #0b193d;
+}
+
+.register-heading p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.45;
+    font-weight: 400;
+    color: #56627a;
+}
+
+.role-tab {
+    height: 45px;
+    padding: 0 10px;
+    border: 1px solid #e0e5ec;
+    border-radius: 6px;
+    background: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #29334a;
+    cursor: pointer;
+}
+
+.field {
+    margin-bottom: 12px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #18233d;
+}
+
+.input-wrap {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dce2ea;
+    border-radius: 6px;
+    background: #ffffff;
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.input-wrap:focus-within {
+    border-color: #2875e8;
+    box-shadow: 0 0 0 3px rgba(40, 117, 232, 0.08);
+}
+
+.input-wrap>i {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    color: #8995a9;
+    font-size: 16px;
+}
+
+.input-wrap input {
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #17213b;
+}
+
+.input-wrap input::placeholder {
+    color: #8792a7;
+    opacity: 1;
+}
+
+.eye-btn {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #7d899d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.eye-btn i {
+    font-size: 15px;
+}
+
+.terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin: 3px 0 16px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: #536078;
+}
+
+.terms input {
+    flex: 0 0 auto;
+    width: 13px;
+    height: 13px;
+    margin: 1px 0 0;
+    accent-color: #1168ef;
+}
+
+.terms label {
+    cursor: pointer;
+}
+
+.terms a {
+    color: #0568ee;
+    text-decoration: none;
+}
+
+.signup-btn {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #1855df 0%, #0876f9 100%);
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+}
+
+.signup-btn:hover {
+    filter: brightness(0.96);
+}
+
+.login-text {
+    margin: 19px 0 0;
+    text-align: center;
+    color: #5c687d;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.login-text a {
+    color: #0568ee;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-right {
+    position: relative;
+    min-height: 842px;
+    overflow: hidden;
+    border-left: 1px solid #e0e6ef;
+    background: linear-gradient(145deg, #f4f9ff 0%, #edf6ff 48%, #e6f1ff 100%);
+}
+
+.register-right::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 430px;
+    left: -110px;
+    bottom: -120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.34);
+    filter: blur(1px);
+}
+
+.right-content {
+    position: absolute;
+    z-index: 3;
+    top: 143px;
+    left: 40px;
+    right: 30px;
+}
+
+.right-content h2 {
+    margin: 0 0 16px;
+    font-family: "Inter", sans-serif;
+    font-size: 28px;
+    line-height: 1.38;
+    font-weight: 700;
+    letter-spacing: -0.65px;
+    color: #0b193d;
+}
+
+.right-content h2 span {
+    color: #1265e8;
+}
+
+.right-content p {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: #18233e;
+}
+
+.register-graphic {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 250px 150px;
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+.features {
+    min-height: 105px;
+    padding: 0 36px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 30px;
+    border-top: 1px solid #e2e7ef;
+    background: #ffffff;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.feature-icon {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border-radius: 50%;
+    background: #eef5ff;
+    color: #0867ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.feature strong,
+.feature small {
+    display: block;
+}
+
+.feature strong {
+    margin-bottom: 4px;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #101a31;
+}
+
+.feature small {
+    font-size: 11px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: #5c687d;
+}
+
+@media (max-width: 1000px) {
+    .register-card {
+        grid-template-columns: 1fr 0.72fr;
+    }
+
+    .register-left {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .right-content {
+        left: 28px;
+        top: 125px;
+    }
+
+    .right-content h2 {
+        font-size: 25px;
+    }
+
+    .features {
+        padding: 0 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .register-page {
+        width: 100%;
+        margin: 0;
+
+        border: 0;
+        border-radius: 0;
+    }
+
+    .register-card {
+        display: block;
+
+        min-height: auto;
+    }
+
+    .register-left {
+        padding: 25px 22px 30px;
+    }
+
+    .register-right {
+        display: none;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+
+        padding: 22px;
+
+        gap: 18px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .edunest-logo {
+        width: 170px;
+    }
+
+    .register-heading {
+        margin-top: 38px;
+    }
+
+    .register-heading h1 {
+        font-size: 25px;
+    }
+
+    .register-heading p {
+        font-size: 14px;
+    }
+
+    .social-row {
+        grid-template-columns: 1fr;
+    }
+}

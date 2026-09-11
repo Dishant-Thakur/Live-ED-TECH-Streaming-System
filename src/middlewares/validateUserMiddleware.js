@@ -2,7 +2,7 @@ const validateUserRegistration = (req, res, next) => {
     let {role, name, phone, email, password, confirm_pass } = req.body;
 
     if (!role || !name || !phone || !email || !password || !confirm_pass) {
-        return res.status(400).send("All fields are mandatory");
+        
     }
 
     name = name.trim();
@@ -25,7 +25,7 @@ const validateUserRegistration = (req, res, next) => {
     }
 
     if (password !== confirm_pass) {
-        return res.status(400).send("Passwords do not match");
+        return res.status(400).send("Password does not match");
     }
 
     req.body.name = name;

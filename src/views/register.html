@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="create ypur account in Edunest">
     <title>Edunest User Registration Page</title>
-
+    
+    <link rel="shortcut icon" href="/IMAGES/Edunest logo.png" type="image/x-icon">    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -17,116 +19,83 @@
 
     <main class="register-page">
       <section class="register-card">
+
         <div class="register-left">
           <img src="/IMAGES/Edunest logo.png" alt="Edunest" class="edunest-logo" />
-          <div class="register-heading text-center">
+             <div class="register-heading text-center">
+
             <h1 class="fs-2">Create Your Account</h1>
             <p class="fs-5">Start your learning journey with Edunest</p>
           </div>
 
-          <form  action = "api/v1/auth/register" id="registerForm" method="post">
+          <form action = "api/v1/auth/register" id="registerForm" method="post">
            <div class="role-tabs">
-            <label for="role" class="fs-6 fw-bold">Please Select Role </label>
+
+            <label for="role" class="fs-6 fw-bold">Select Role Type</label>
             <select name="role" id="select_role" class="role-tab" required>
               <option value="" aria-disabled>select</option>
               <option value="user">User</option>
               <option value="faculty">Faculty</option>
               <option value="admin">Admin</option>
             </select>
+
+            <p class="text_valid mt-2"></p>
           </div>
 
-            <div class="field">
-              <label for="name" class="fs-6"> Full Name </label>
-
+            <div class="field mt-3">
+              <label for="name" class="fs-6 mt-2"> Full Name </label>
               <div class="input-wrap">
                 <i class="bi bi-person"></i>
-
-                <input type="text"id="name" name="name" placeholder="Enter your full name" autocomplete="name" required/>
+                <input type="text"id="name" name="name" placeholder="Enter your full name" autocomplete="name"/>
               </div>
+              <p class="text_valid"></p>
             </div>
 
-            <div class="field">
+            <div class="field mt-3">
               <label for="phone" class = "fs-6"> Phone Number </label>
 
               <div class="input-wrap">
                 <i class="bi bi-telephone"></i>
-
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="Enter your phone number"
-                  maxlength="10"
-                  autocomplete="tel"
-                  required
-                />
+                <input type="tel" id="phone"name="phone"placeholder="Enter your phone number" maxlength="10"autocomplete="tel"/>
               </div>
+              <p class="text_valid mt-2"></p>
             </div>
 
-            <div class="field">
+            <div class="field mt-3">
               <label for="email" class="fs-6"> Email Address </label>
 
               <div class="input-wrap">
                 <i class="bi bi-envelope"></i>
-
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  autocomplete="email"
-                  required
-                />
+                <input type="email" id="email" name="email"placeholder="Enter your email"autocomplete="email"/>
               </div>
+              <p class="text_valid mt-2"></p>
             </div>
 
-            <div class="field">
+            <div class="field mt-3">
               <label for="password" class="fs-6"> Password </label>
 
               <div class="input-wrap">
                 <i class="bi bi-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Create a password" autocomplete="new-password"/>
 
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Create a password"
-                  autocomplete="new-password"
-                  required
-                />
-
-                <button
-                  type="button"
-                  class="eye-btn"
-                  aria-label="Show password"
-                >
+                <button type="button" class="eye-btn" aria-label="Show password">
                   <i class="bi bi-eye"></i>
                 </button>
               </div>
+              <p class="text_valid mt-2"></p>
             </div>
 
-            <div class="field">
+            <div class="field mt-3">
               <label for="confirm_pass" class="fs-6"> Confirm Password </label>
 
               <div class="input-wrap">
                 <i class="bi bi-lock"></i>
+              <input type="password" id="confirm_pass" name="confirm_pass" placeholder="Confirm your password" autocomplete="new-password"/>
 
-                <input
-                  type="password"
-                  id="confirm_pass"
-                  name="confirm_pass"
-                  placeholder="Confirm your password"
-                  autocomplete="new-password"
-                  required
-                />
-
-                <button
-                  type="button"
-                  class="eye-btn"
-                  aria-label="Show confirm password"
-                >
+                <button type="button" class="eye-btn" aria-label="Show confirm password">
                   <i class="bi bi-eye"></i>
                 </button>
+                <p class="text_valid mt-2"></p>
               </div>
             </div>
 
@@ -139,7 +108,8 @@
               </label>
             </div>
 
-            <button type="submit" class="signup-btn fs-6" onclick="alert('Register success')">Sign Up</button>
+            <button type="submit" class="signup-btn fs-6" >Sign Up</button>
+            <p class="text_valid mt-2"></p>
             <p class="login-text fs-6">
               Already have an account?
               <a href="login.html" class="fs-6"> Login </a>
@@ -155,11 +125,7 @@
               <p class="fs-6 fw-bold">Gain skills, take experience and achieve goals</p>
             </h2>
           </div> <br>
-          <img
-            src="/IMAGES/register-graphic.png"
-            alt="EduNest learning illustration"
-            class="register-graphic"
-          />
+          <img src="/IMAGES/register-graphic.png"alt="EduNest learning illustration"class="register-graphic"/>
         </aside>
       </section>
 

@@ -14,16 +14,7 @@ function form_validation() {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phonePattern = /^[6-9]\d{9}$/;
 
-    if (
-      name === "" ||
-      number === "" ||
-      email === "" ||
-      course === "" ||
-      timing === "" ||
-      mode === "" ||
-      qualification === "" ||
-      status === ""
-    ) {
+    if (name === "" || number === "" || email === "" ||course === "" || timing === "" || mode === "" || qualification === "" || status === ""){
       e.preventDefault();
       alert("All fields are mandatory");
       return;
@@ -40,6 +31,8 @@ function form_validation() {
       alert("Please enter a valid 10-digit phone number");
       return;
     }
+    alert('Form submitted sucessfully');
+    form.submit();
   });
 }
 form_validation();

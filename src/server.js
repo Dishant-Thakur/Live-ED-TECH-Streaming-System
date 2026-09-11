@@ -24,9 +24,8 @@ const limiter = rateLimiter({
     },
 });
 const registerRoutes = require('./routes/registerRoute.js');
-const userRoutes = require("./routes/userRoute.js");
+const authRoutes = require("./routes/authRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
-
 
 app.use(
     helmet({
@@ -70,7 +69,8 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true , limit : '15kb'}));
+app.use(express.urlencoded({ extended: false , limit : '15kb'}));
+app.set("trust proxy", 1);
 app.use(session({
         secret: process.env.SESSION_SECRET,
         resave: false,
@@ -84,8 +84,9 @@ app.use(session({
     })
 );
 
+app.use("/api/v1/auth", limiter);
 app.use("/api/v1", registerRoutes);
-app.use("/api/v1", userRoutes);
+app.use("/api/v1", authRoutes);
 app.use("/", enquiryRoutes);
 
 
@@ -105,6 +106,13 @@ app.get(["/userDashboard", "/userDashboard.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "userDashboard.html"));
 })
 
+app.get(["/facultyDashboard", "/facultyDashboard.html"],(req,res)=>{
+    res.sendFile(path.join(__dirname, "facultyDashboard.html"));
+})
+
+app.get(["/adminDashboard", "/adminDashboard.html"],(req,res)=>{
+    res.sendFile(path.join(__dirname, "adminDashboard.html"));
+})
 
 app.use((req, res) => {
     res.status(404).send("<h2> OOPS! HTTP ERROR-404 Page Not Found </h2>");

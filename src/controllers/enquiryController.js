@@ -1,7 +1,7 @@
 const Enquiry = require('../models/enquiryModel');
 const transporter = require("../utils/mailer");
 
-const enquityController = async(req,res)=>{
+const enquiryController = async(req,res)=>{
   try {
     let {name, phone, email, course, qualification, status, goals,} = req.body;
     await transporter.sendMail({
@@ -175,4 +175,4 @@ const enquityController = async(req,res)=>{
   }
 }
 
-module.exports = enquityController;
+module.exports = enquiryController;
