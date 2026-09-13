@@ -1,21 +1,39 @@
 const User = require('../models/userModel');
+const Faculty = require('../models/faculty.js');
+const Admin = require('../models/adminModel');
 const bcrypt = require('bcrypt');
 
 const authController = async function (req, res, next) {
     try {
-        const { name, email, password } = req.body;
-        let user_data = await User.findOne({
-            email: email
-        });
-
-        if (!user_data) {
+        const { role, email, password } = req.body;
+        let account = null;
+        if (role === 'user') {
+            account = await User.findOne({ email });
+        } 
+        else if (role === 'faculty') {
+            account = await Faculty.findOne({ email });
+        } 
+        else if (role === 'admin') {
+            account = await Admin.findOne({ email });
+        } 
+        else {
             return res.status(400).json({
                 status: false,
-                message: "Email not found. Register first."
+                message: "Invalid role."
+            });
+        }
+        if (!account) {
+            return res.status(400).json({
+                status: false,
+                message: `No ${role} account found. Please register first.`
             });
         }
 
-        const passwordMatch = await bcrypt.compare(password,user_data.password);
+        const passwordMatch = await bcrypt.compare(
+            password,
+            account.password
+        );
+
         if (!passwordMatch) {
             return res.status(400).json({
                 status: false,
@@ -23,7 +41,11 @@ const authController = async function (req, res, next) {
             });
         }
 
-        req.User = user_data;
+        req.session.user = {
+            id: account._id,
+            role: account.role
+        };
+
         next();
 
     } catch (error) {

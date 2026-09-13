@@ -2,7 +2,7 @@ const validateUserRegistration = (req, res, next) => {
     let {role, name, phone, email, password, confirm_pass } = req.body;
 
     if (!role || !name || !phone || !email || !password || !confirm_pass) {
-        
+        return res.status(400).send("All fields are mandatory");
     }
 
     name = name.trim();
