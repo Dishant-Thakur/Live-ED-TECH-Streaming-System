@@ -31,23 +31,23 @@
           <form action = "api/v1/auth/register" id="registerForm" method="post">
            <div class="role-tabs">
 
-            <label for="role" class="fs-6 fw-bold">Select Role Type</label>
-            <select name="role" id="select_role" class="role-tab" required>
+            <label for="role" class="fs-6 fw-bold">Please Select Role Type</label>
+            <select name="role" id="select_role" class="role-tab">
               <option value="" aria-disabled>select</option>
               <option value="user">User</option>
               <option value="faculty">Faculty</option>
               <option value="admin">Admin</option>
             </select>
-
             <p class="text_valid mt-2"></p>
           </div>
 
             <div class="field mt-3">
-              <label for="name" class="fs-6 mt-2"> Full Name </label>
+              <label for="name" class="fs-6 mt-2"> Name </label>
               <div class="input-wrap">
                 <i class="bi bi-person"></i>
                 <input type="text"id="name" name="name" placeholder="Enter your full name" autocomplete="name"/>
-              </div>
+              </div> 
+              <br>
               <p class="text_valid"></p>
             </div>
 
@@ -86,7 +86,7 @@
             </div>
 
             <div class="field mt-3">
-              <label for="confirm_pass" class="fs-6"> Confirm Password </label>
+              <label for="confirm_pass" class="fs-6"></label>
 
               <div class="input-wrap">
                 <i class="bi bi-lock"></i>
@@ -95,8 +95,8 @@
                 <button type="button" class="eye-btn" aria-label="Show confirm password">
                   <i class="bi bi-eye"></i>
                 </button>
-                <p class="text_valid mt-2"></p>
               </div>
+              <p class="text_valid mt-2"></p>
             </div>
 
             <div class="terms">

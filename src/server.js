@@ -12,10 +12,9 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 connectDB();
-
 const limiter = rateLimiter({
     windowMs: 1000 * 60 * 3,
-    limit: 5,
+    limit: 30,
     statusCode: 429,
     message: {
         status: 429,
@@ -83,12 +82,10 @@ app.use(session({
         }
     })
 );
-
 app.use("/api/v1/auth", limiter);
 app.use("/api/v1", registerRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/", enquiryRoutes);
-
 
 app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));

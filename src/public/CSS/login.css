@@ -183,7 +183,7 @@ body {
     text-decoration: none;
 }
 
-.signup-btn {
+.login-btn {
     width: 100%;
     height: 40px;
     border: 0;
@@ -197,7 +197,7 @@ body {
     transition: filter 0.15s ease;
 }
 
-.signup-btn:hover {
+.login-btn:hover {
     filter: brightness(0.96);
 }
 
