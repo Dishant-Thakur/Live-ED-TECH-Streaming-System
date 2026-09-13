@@ -11,8 +11,8 @@ registerForm.addEventListener('submit', (event) => {
     const validTexts = document.querySelectorAll('.text_valid');
 
     validTexts.forEach((text) => {
-        text.innerText = '';
-        text.style.color = '';
+        text.innerText = "";
+        text.style.color = "";
     });
 
     if (!role) {

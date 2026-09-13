@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const educatorSchema = new mongoose.Schema({
+const facultySchema = new mongoose.Schema({
     name: {
       type: String,
       trim: true,
@@ -38,5 +38,5 @@ const educatorSchema = new mongoose.Schema({
   },
 );
 
-const Educator = mongoose.model("Educator", educatorSchema);
-module.exports = Educator;
+const faculty = mongoose.model("faculty", facultySchema);
+module.exports = faculty;

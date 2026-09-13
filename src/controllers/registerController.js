@@ -1,4 +1,6 @@
 const User = require('../models/userModel');
+const faculty = require('../models/faculty.js');
+const Admin = require('../models/adminModel');
 const bcrypt = require('bcrypt');
 
 const registerController = async (req, res, next) => {
@@ -32,7 +34,6 @@ const registerController = async (req, res, next) => {
         });
 
         req.User = new_user;
-
         return res.redirect('/login.html');
 
     } catch (error) {
@@ -40,7 +41,7 @@ const registerController = async (req, res, next) => {
 
         return res.status(500).json({
             status: false,
-            message: "Internal server error"
+            message: "Internal server error: ",
         });
     }
 };
