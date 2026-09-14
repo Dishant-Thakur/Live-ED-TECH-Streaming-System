@@ -28,7 +28,6 @@ const authController = async function (req, res, next) {
                 message: `No ${role} account found. Please register first.`
             });
         }
-
         const passwordMatch = await bcrypt.compare(
             password,
             account.password
@@ -45,7 +44,7 @@ const authController = async function (req, res, next) {
             id: account._id,
             role: account.role
         };
-
+        console.log(req.session.user);
         next();
 
     } catch (error) {
@@ -57,5 +56,4 @@ const authController = async function (req, res, next) {
         });
     }
 };
-
 module.exports = authController;

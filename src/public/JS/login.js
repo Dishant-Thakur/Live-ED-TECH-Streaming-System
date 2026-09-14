@@ -35,37 +35,59 @@ loginForm.addEventListener("submit", async (event) => {
 
   try {
     const response = await fetch("/api/v1/auth/login", {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        role: role,
-        email: email,
-        password: password,
-      }),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            role,
+            email,
+            password,
+        }),
     });
+
+    console.log("Status:", response.status);
+
+    const contentType = response.headers.get("content-type");
+    console.log("Content-Type:", contentType);
+
+    if (!contentType || !contentType.includes("application/json")) {
+        const text = await response.text();
+        console.error("Server returned:", text);
+
+        validTexts[2].innerText =
+            `Server returned ${response.status}. Check backend route.`;
+
+        validTexts[2].style.color = "red";
+        return;
+    }
 
     const data = await response.json();
 
+    console.log("Login response:", data);
+
     if (!response.ok) {
-      validTexts[2].innerText = data.message;
-      validTexts[2].style.color = "red";
-      return;
+        validTexts[2].innerText = data.message;
+        validTexts[2].style.color = "red";
+        return;
     }
 
-    if (data.role === "admin") window.location.href = "/adminbDashboard.html";
-    else if (data.role === "faculty")
-      window.location.href = "/facultyDashboard.html";
-    else if (data.role === "user") window.location.href = "/userDashboard.html";
-    else {
-      validTexts[2].innerText = "Invalid user role permission denied.";
-      validTexts[2].style.color = "red";
+    if (data.role === "admin") {
+        window.location.href = "/adminDashboard.html";
+    } 
+    else if (data.role === "faculty") {
+        window.location.href = "/facultyDashboard.html";
+    } 
+    else if (data.role === "user") {
+        window.location.href = "/userDashboard.html";
     }
-  } catch (error) {
-    validTexts[2].innerText = "Unable to connect to server. Please try again.";
+
+} catch (error) {
+    console.error("LOGIN ERROR:", error);
+
+    validTexts[2].innerText =
+        "Unable to connect with server. Please try again.";
+
     validTexts[2].style.color = "red";
-  }
+}
 });
