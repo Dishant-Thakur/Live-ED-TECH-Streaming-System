@@ -46,8 +46,7 @@ registerForm.addEventListener('submit', (event) => {
         validTexts[2].style.color = 'red';
         return;
     }
-
-   
+    
     if (password.length < 8) {
         validTexts[4].innerText = 'Password length must be 8 or more';
         validTexts[4].style.color = 'red';
@@ -58,7 +57,8 @@ registerForm.addEventListener('submit', (event) => {
         validTexts[5].innerText = 'Password does not match';
         validTexts[5].style.color = 'red';
         return;
-    }
+    }   
+        alert('Register successfully');
         registerForm.submit();
 });
 

@@ -2,7 +2,6 @@
   box-sizing: border-box;
 }
 
-
 .edunest-navbar {
   height: 95px;
   background: #ffffff;
@@ -29,7 +28,6 @@
   transition: all 0.25s ease;
 }
 
-
 .nav-link:hover {
   color: #1268e8 !important;
 }
@@ -40,101 +38,43 @@
 
 .nav-link.active::after {
   content: "";
-
   position: absolute;
-
   left: 15px;
   right: 15px;
   bottom: 2px;
-
   height: 3px;
-
   background: #1268e8;
-
   border-radius: 10px;
 }
 
 .login-btn {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-
   background: white;
-
   color: #1268e8;
-
   border: 1.5px solid #1268e8;
-
   border-radius: 9px;
-
   padding: 11px 20px;
-
+  margin-left: 5px;
   font-size: 16px;
   font-weight: 600;
-
   transition: all 0.25s ease;
 }
 
+.login-btn a{
+  text-decoration: none;
+}
 .login-btn:hover {
   background: #1268e8;
   color: white;
 }
 
-.login-btn::after {
-  margin-left: 5px;
-}
-
-.dropdown-menu {
-  min-width: 220px;
-  margin-top: 12px !important;
-  padding: 8px;
-  border: none;
-
-  border-radius: 12px;
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-}
-
-.dropdown-item {
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 12px 14px;
-
-  border-radius: 8px;
-
-  font-size: 15px;
-
-  color: #172033;
-
-  transition: 0.2s;
-}
-
-.dropdown-item i {
-  width: 20px;
-
-  color: #1268e8;
-}
-
-.dropdown-item:hover {
-  background: #eef5ff;
-
-  color: #1268e8;
-}
-
 @media (max-width: 991px) {
   .edunest-navbar {
     height: auto;
-
     padding: 12px 0;
   }
 
   .navbar-nav {
     gap: 0;
-
     margin-top: 15px;
   }
 
@@ -368,7 +308,6 @@
     padding: 40px 15px;
     border-radius: 20px;
   }
-
   .course-card {
     max-width: 360px;
   }

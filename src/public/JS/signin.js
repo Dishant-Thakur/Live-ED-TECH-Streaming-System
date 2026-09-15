@@ -47,25 +47,16 @@ loginForm.addEventListener("submit", async (event) => {
     });
 
     console.log("Status:", response.status);
-
     const contentType = response.headers.get("content-type");
-    console.log("Content-Type:", contentType);
 
     if (!contentType || !contentType.includes("application/json")) {
         const text = await response.text();
-        console.error("Server returned:", text);
-
-        validTexts[2].innerText =
-            `Server returned ${response.status}. Check backend route.`;
-
+        validTexts[2].innerText = `Server returned ${response.status}. Check backend route.`;
         validTexts[2].style.color = "red";
         return;
     }
 
     const data = await response.json();
-
-    console.log("Login response:", data);
-
     if (!response.ok) {
         validTexts[2].innerText = data.message;
         validTexts[2].style.color = "red";
@@ -81,13 +72,10 @@ loginForm.addEventListener("submit", async (event) => {
     else if (data.role === "user") {
         window.location.href = "/userDashboard.html";
     }
+    alert('Login successfully');
 
 } catch (error) {
-    console.error("LOGIN ERROR:", error);
-
-    validTexts[2].innerText =
-        "Unable to connect with server. Please try again.";
-
+    validTexts[2].innerText = "Unable to connect with server. Please try again.";
     validTexts[2].style.color = "red";
 }
 });

@@ -4,13 +4,14 @@ const express = require("express");
 const path = require("path");
 
 const connectDB = require("./utils/db");
+const client = require('./utils/client.js');
 const session = require("express-session");
 
 const rateLimiter = require("express-rate-limit");
 const helmet = require("helmet");
 const app = express();
-
 const PORT = process.env.PORT || 3000;
+
 connectDB();
 const limiter = rateLimiter({
   windowMs: 1000 * 60 * 3,
@@ -80,12 +81,12 @@ app.get(["/", "/index.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
-app.get(["/login", "/login.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "login.html"));
+app.get(["/signin", "/signin.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "signin.html"));
 });
 
-app.get(["/register", "/register.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "register.html"));
+app.get(["/signup", "/signup.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "signup.html"));
 });
 
 app.get(["/userDashboard", "/userDashboard.html"], (req, res) => {
