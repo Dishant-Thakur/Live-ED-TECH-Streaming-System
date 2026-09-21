@@ -1,5 +1,4 @@
 const authorizeMiddleware = (req, res, next) => {
-
     if (!req.session.user) {
         return res.status(401).json({
             status: false,
@@ -10,7 +9,7 @@ const authorizeMiddleware = (req, res, next) => {
     if (!["user", "faculty", "admin"].includes(role)) {
         return res.status(403).json({
             status: false,
-            message: "Permission denied. You have not permission to access this"
+            message: "Permission denied. You have not permission to access this."
         });
     }
     return res.status(200).json({

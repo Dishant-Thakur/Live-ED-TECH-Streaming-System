@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const express = require("express");
 const path = require("path");
 
@@ -11,11 +10,11 @@ const rateLimiter = require("express-rate-limit");
 const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
-
 connectDB();
+
 const limiter = rateLimiter({
-  windowMs: 1000 * 60 * 3,
-  limit: 30,
+  windowMs: 1000 * 60 * 15,
+  limit: 10,
   statusCode: 429,
   message: {
     status: 429,
@@ -23,10 +22,10 @@ const limiter = rateLimiter({
     message: "Too many attempts done. Please try again after 3 minutes.",
   },
 });
-
 const registerRoutes = require("./routes/registerRoute.js");
 const authRoutes = require("./routes/authRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
+
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -66,15 +65,15 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 3,
-      secure: false,
+      secure: true,
       sameSite: "lax",
-      httpOnly: false,
+      httpOnly: true,
     },
   }),
 );
 app.use("/api/v1/auth", limiter);
 app.use("/api/v1", registerRoutes);
-app.use("/api/v1", authRoutes);
+app.use("/api/v1", limiter, authRoutes);
 app.use("/", enquiryRoutes);
 
 app.get(["/", "/index.html"], (req, res) => {
