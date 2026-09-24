@@ -58,7 +58,6 @@ registerForm.addEventListener('submit', (event) => {
         validTexts[5].style.color = 'red';
         return;
     }   
-        alert('Register successfully');
         registerForm.submit();
 });
 

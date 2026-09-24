@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 const limiter = rateLimiter({
-  windowMs: 1000 * 60 * 15,
-  limit: 10,
+  windowMs: 1000 * 60 * 3,
+  limit: 100,
   statusCode: 429,
   message: {
     status: 429,
