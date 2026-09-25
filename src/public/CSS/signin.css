@@ -452,3 +452,12 @@ body {
         font-size : 15px !important;
     }
 }
+.otp_login{
+    text-decoration: none;
+    font-weight: 500;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+}
+

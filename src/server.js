@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-
 const connectDB = require("./utils/db");
 // const client = require('./utils/client.js');
 const session = require("express-session");
@@ -86,6 +85,9 @@ app.get(["/signin", "/signin.html"], (req, res) => {
 
 app.get(["/forgotPassword", "/forgotPassword.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "forgotPassword.html"));
+});
+app.get("/OTP.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "OTP.html"));
 });
 
 app.get(["/signup", "/signup.html"], (req, res) => {
