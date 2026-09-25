@@ -383,26 +383,74 @@ body {
         gap: 18px;
     }
 }
-
-
 @media (max-width: 480px) {
     .edunest-logo {
         width: 170px;
     }
-
     .register-heading {
         margin-top: 38px;
     }
-
     .register-heading h1 {
         font-size: 25px;
     }
-
     .register-heading p {
         font-size: 14px;
     }
-
     .social-row {
         grid-template-columns: 1fr;
+    }
+}
+
+@media(min-width : 992px){
+    .forgot_password{
+    margin-left: 80%;
+    margin-top: 5px;
+}
+.forgot_password a{
+    color: #0867ee;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+}
+@media (min-width:745px) and (max-width:991px){
+    .forgot_password{
+        margin-top: 5px;
+        margin-left: 80%;
+    }
+    .forgot_password a{
+        font-size : 14px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}
+@media (min-width:576px) and (max-width:744px){
+    .forgot_password{
+        margin-top: 5px;
+        margin-left: 70%;
+    }
+    .forgot_password a{
+        font-size : 14px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}
+
+@media (min-width:200px) and (max-width:575px){
+    .forgot_password{
+        margin-top: 5px;
+        margin-left: 60%;
+    }
+    .forgot_password a{
+        font-size : 13px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}
+
+@media(min-width:200px) and (max-width:348px) {
+    .sub_heading{
+        font-size : 15px !important;
     }
 }

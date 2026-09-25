@@ -43,7 +43,7 @@ const registerController = async (req, res, next) => {
         if (password !== confirm_pass) {
             return res.status(400).json({
                 status: false,
-                message: "Passwords do not match."
+                message: "Password does not match."
             });
         }
 

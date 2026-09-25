@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 
 const connectDB = require("./utils/db");
-const client = require('./utils/client.js');
+// const client = require('./utils/client.js');
 const session = require("express-session");
 
 const rateLimiter = require("express-rate-limit");
