@@ -14,7 +14,6 @@ body {
     background: #f3f7fd;
     -webkit-font-smoothing: antialiased;
 }
-
 .register-page {
     width: min(1510px, calc(100% - 22px));
     margin: 27px auto;
@@ -403,8 +402,8 @@ body {
 
 @media(min-width : 992px){
     .forgot_password{
-    margin-left: 80%;
-    margin-top: 5px;
+    margin-left: 80% !important;
+    margin-top: 8px !important;
 }
 .forgot_password a{
     color: #0867ee;
@@ -416,8 +415,8 @@ body {
 }
 @media (min-width:745px) and (max-width:991px){
     .forgot_password{
-        margin-top: 5px;
-        margin-left: 80%;
+        margin-top: 8px !important;
+        margin-left: 80% !important;
     }
     .forgot_password a{
         font-size : 14px;
@@ -427,8 +426,8 @@ body {
 }
 @media (min-width:576px) and (max-width:744px){
     .forgot_password{
-        margin-top: 5px;
-        margin-left: 70%;
+        margin-top: 8px !important;
+        margin-left: 70% !important;
     }
     .forgot_password a{
         font-size : 14px;
@@ -436,11 +435,10 @@ body {
         text-decoration: none;
     }
 }
-
 @media (min-width:200px) and (max-width:575px){
     .forgot_password{
-        margin-top: 5px;
-        margin-left: 60%;
+        margin-top: 8px !important;
+        margin-left: 60% !important;
     }
     .forgot_password a{
         font-size : 13px;

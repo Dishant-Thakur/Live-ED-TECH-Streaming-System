@@ -84,6 +84,10 @@ app.get(["/signin", "/signin.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "signin.html"));
 });
 
+app.get(["/forgotPassword", "/forgotPassword.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "forgotPassword.html"));
+});
+
 app.get(["/signup", "/signup.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "signup.html"));
 });
