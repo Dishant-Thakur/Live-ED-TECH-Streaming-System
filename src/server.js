@@ -24,6 +24,7 @@ const limiter = rateLimiter({
 const registerRoutes = require("./routes/registerRoute.js");
 const authRoutes = require("./routes/authRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
+const changePasswordRoute = require("./routes/forgotPasswordRoute.js");
 
 app.use(
   helmet({
@@ -55,7 +56,7 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false, limit: "15kb" }));
+app.use(express.urlencoded({ extended: true, limit: "15kb" }));
 app.set("trust proxy", 1);
 app.use(
   session({
@@ -73,6 +74,7 @@ app.use(
 app.use("/api/v1/auth", limiter);
 app.use("/api/v1", registerRoutes);
 app.use("/api/v1", limiter, authRoutes);
+app.use("/api/v1", changePasswordRoute);
 app.use("/", enquiryRoutes);
 
 app.get(["/", "/index.html"], (req, res) => {
@@ -83,7 +85,7 @@ app.get(["/signin", "/signin.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "signin.html"));
 });
 
-app.get(["/forgotPassword", "/forgotPassword.html"], (req, res) => {
+app.get("/forgotPassword.html", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "forgotPassword.html"));
 });
 app.get("/OTP.html", (req, res) => {

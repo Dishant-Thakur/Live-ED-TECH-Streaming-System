@@ -12,7 +12,6 @@ function togglePassword(inputId, iconId) {
         icon.classList.add("fa-eye");
     }
 }
-
 const form = document.getElementById("forgotPasswordForm");
 const newPassword = document.getElementById("newPassword");
 const confirmPassword = document.getElementById("confirmPassword");
@@ -41,5 +40,5 @@ form.addEventListener("submit", function(event) {
         passwordError.textContent = "Password must be at least 8 characters.";
         return;
     }
-    console.log("Password reset request submitted.");
+    alert("Successfully updated password.");
 });

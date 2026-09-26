@@ -3,4 +3,5 @@ const forgotPasswordController = require('../controllers/forgotPasswordControlle
 const express = require('express');
 const router = express.Router();
 
-router.patch(forgotPassword,forgotPasswordController);
+router.patch("/auth/change-password", forgotPassword,forgotPasswordController);
+module.exports = router;

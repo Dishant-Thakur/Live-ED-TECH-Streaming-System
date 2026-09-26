@@ -2,7 +2,7 @@ const forgot_password = function(req, res, next){
     let {email, newPassword, confirmPassword} = req.body;
 
     if (!email || !newPassword || !confirmPassword) {
-        return res.status(400).send("All fields are mandatory");
+        return res.status(400).send("Email, new password and confirm password are required.");
     }
     email = email.trim().toLowerCase();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -16,7 +16,7 @@ const forgot_password = function(req, res, next){
     }
 
     if (newPassword !== confirmPassword) {
-        return res.status(400).send("Password does not match");
+        return res.status(400).send("NewPassword ans confirm password does not match");
     }
     req.body.email = email;
     req.body.newPassword = newPassword;
