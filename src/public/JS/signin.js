@@ -46,9 +46,7 @@ loginForm.addEventListener("submit", async (event) => {
         }),
     });
 
-    console.log("Status:", response.status);
     const contentType = response.headers.get("content-type");
-
     if (!contentType || !contentType.includes("application/json")) {
         const text = await response.text();
         validTexts[2].innerText = `Server returned ${response.status}. Check backend route.`;

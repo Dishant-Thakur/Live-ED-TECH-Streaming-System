@@ -40,5 +40,6 @@ form.addEventListener("submit", function(event) {
         passwordError.textContent = "Password must be at least 8 characters.";
         return;
     }
-    alert("Successfully updated password.");
+    alert('Password update succesfully');
+    window.href.location = "/signin.html";
 });

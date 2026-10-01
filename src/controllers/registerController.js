@@ -82,9 +82,8 @@ const registerController = async (req, res, next) => {
                 message: "Invalid role."
             });
         }
-
         req.User = new_user;
-        return res.redirect('/login.html');
+        return res.redirect('/signin.html');
 
     } catch (error) {
         console.log("Error:", error);

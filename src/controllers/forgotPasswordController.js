@@ -26,11 +26,9 @@ const forgotPasswordController = async function (req, res) {
         password: hashedPassword,
       },
     });
+    console.log('password update successfully', hashedPassword);
+    return res.redirect('/siginin.html');
 
-    return res.status(200).json({
-      status: true,
-      message: "Password updated successfully.",
-    });
   } catch (error) {
     console.error("Server error failed to update password:", error);
     return res.status(500).json({

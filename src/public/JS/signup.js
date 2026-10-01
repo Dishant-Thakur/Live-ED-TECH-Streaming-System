@@ -59,5 +59,8 @@ registerForm.addEventListener('submit', (event) => {
         return;
     }   
         registerForm.submit();
+        alert('Registration succesfully');
+        windodow.href.location = "/signin.html";
+
 });
 
