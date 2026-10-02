@@ -83,7 +83,10 @@ const registerController = async (req, res, next) => {
             });
         }
         req.User = new_user;
-        return res.redirect('/signin.html');
+        return res.status(200).json({
+            status : true,
+            message : 'Registeration success.',
+        });
 
     } catch (error) {
         console.log("Error:", error);

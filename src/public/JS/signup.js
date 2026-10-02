@@ -1,5 +1,5 @@
 const registerForm = document.getElementById('registerForm');
-registerForm.addEventListener('submit', (event) => {
+registerForm.addEventListener('submit', async(event) => {
     event.preventDefault();
 
     const role = document.getElementById('select_role').value;
@@ -57,10 +57,35 @@ registerForm.addEventListener('submit', (event) => {
         validTexts[5].innerText = 'Password does not match';
         validTexts[5].style.color = 'red';
         return;
-    }   
-        registerForm.submit();
-        alert('Registration succesfully');
-        windodow.href.location = "/signin.html";
+    } 
 
+    try{
+        const response = await fetch("api/v1/auth/register",{
+            method : 'POST',
+            headers : {
+                "Content-Type" : "application/json",
+            },
+            body : JSON.stringify({
+                role,name,phone,email,password,confirm_pass,
+            })
+        });
+        const data = await response.json();
+        if(!data.status){
+        validTexts[5].innerText = data.message;
+        validTexts[5].style.color = 'red';
+        return;
+        }
+
+        validTexts[5].innerText = data.message;
+        validTexts[5].style.color = 'green';
+
+        setTimeout(() => {
+            window.location.href = "/signin.html";
+        },1000);
+    }
+    catch(error){
+        validTexts[5].innerText = 'Internal server error';
+        validTexts[5].style.color = 'red';
+    }
 });
 

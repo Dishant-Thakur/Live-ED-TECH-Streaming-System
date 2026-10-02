@@ -49,7 +49,6 @@ const authController = async function (req, res, next) {
 
     } catch (error) {
         console.log("Error:", error);
-
         return res.status(500).json({
             status: false,
             message: "Internal server error"

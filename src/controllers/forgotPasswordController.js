@@ -4,37 +4,44 @@ const Admin = require("../models/adminModel");
 const bcrypt = require("bcrypt");
 
 const forgotPasswordController = async function (req, res) {
-  try {
-    const { email, newPassword} = req.body;
-    const [user, faculty, admin] = await Promise.all([
-      User.findOne({ email }),
-      Faculty.findOne({ email }),
-      Admin.findOne({ email }),
-    ]);
+    try {
+        const { email, newPassword } = req.body;
 
-    if (!user && !faculty && !admin) {
-      return res.status(400).json({
-        status: false,
-        message: "This email is not registered.",
-      });
+        const [user, faculty, admin] = await Promise.all([
+            User.findOne({ email }),
+            Faculty.findOne({ email }),
+            Admin.findOne({ email })
+        ]);
+
+        if (!user && !faculty && !admin) {
+            return res.status(400).json({
+                status: false,
+                message: "This email is not registered with us."
+            });
+        }
+
+        const account = user || faculty || admin;
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+        await account.updateOne({
+            $set: {
+                password: hashedPassword
+            }
+        });
+
+        console.log("Password updated successfully");
+        return res.status(200).json({
+            status: true,
+            message: "Password updated successfully."
+        });
+
+    } catch (error) {
+        console.error("Server error failed to update password:", error);
+        return res.status(500).json({
+            status: false,
+            message: "Internal server error."
+        });
     }
-
-    const account = user || faculty || admin;
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await account.updateOne({
-      $set: {
-        password: hashedPassword,
-      },
-    });
-    console.log('password update successfully', hashedPassword);
-    return res.redirect('/siginin.html');
-
-  } catch (error) {
-    console.error("Server error failed to update password:", error);
-    return res.status(500).json({
-      status: false,
-      message: "Internal server error.",
-    });
-  }
 };
+
 module.exports = forgotPasswordController;
