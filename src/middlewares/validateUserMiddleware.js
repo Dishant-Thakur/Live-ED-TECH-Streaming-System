@@ -27,7 +27,6 @@ const validateUserRegistration = (req, res, next) => {
     if (password !== confirm_pass) {
         return res.status(400).send("Password does not match");
     }
-
     req.body.name = name;
     req.body.email = email;
     req.body.phone = phone;
@@ -52,10 +51,7 @@ const validateUserLogin = (req, res, next) => {
     if (password.length < 8) {
         return res.status(400).send("Password must be 8 or more characters");
     }
-
     req.body.email = email;
-
     next();
 };
-
 module.exports = { validateUserRegistration, validateUserLogin };

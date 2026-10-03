@@ -62,13 +62,19 @@ loginForm.addEventListener("submit", async (event) => {
     }
 
     if (data.role === "admin") {
-        window.location.href = "/adminDashboard.html";
+        setTimeout(() => {
+            window.location.href = "/adminDashboard.html";
+        },1000);
     } 
     else if (data.role === "faculty") {
-        window.location.href = "/facultyDashboard.html";
+        setTimeout(() => {
+            window.location.href = "/facultyDashboard.html";
+        },1000);
     } 
     else if (data.role === "user") {
-        window.location.href = "/userDashboard.html";
+        setTimeout(() => {
+            window.location.href = "/userDashboard.html";
+        },1000);
     }
     alert('Login successfully');
 
