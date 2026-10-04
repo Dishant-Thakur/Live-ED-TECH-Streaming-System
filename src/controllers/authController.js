@@ -42,7 +42,8 @@ const authController = async function (req, res, next) {
 
         req.session.user = {
             id: account._id,
-            role: account.role
+            email : account.email,
+            role: account.role,
         };
         console.log(req.session.user);
         next();

@@ -79,9 +79,7 @@ setTimeout(() => {
     window.location.href = "/signin.html";
 }, 1000)}
 catch (error) {
-        console.error(error);
-        check_exists.innerText =
-            "Failed to update password. Internal server error.";
+        check_exists.innerText = "Failed to update password. Internal server error.";
         check_exists.style.color = "red";
     }
 });
