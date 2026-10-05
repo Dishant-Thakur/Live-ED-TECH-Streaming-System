@@ -81,6 +81,18 @@ app.get(["/", "/index.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
+app.get(["courses", "/courses.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "courses.html"));
+});
+
+app.get(["about", "/about.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "about.html"));
+});
+
+app.get(["contact", "/contact.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "contact.html"));
+});
+
 app.get(["/signin", "/signin.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "signin.html"));
 });
