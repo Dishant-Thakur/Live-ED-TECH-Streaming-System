@@ -43,7 +43,6 @@ const authController = async function (req, res) {
                 message: "Password does not match."
             });
         }
-
         req.session.user = {
             id: account._id,
             name: account.name,
@@ -52,7 +51,6 @@ const authController = async function (req, res) {
         };
 
         console.log(req.session.user);
-
         return res.status(200).json({
             status: true,
             message: "Login successful",

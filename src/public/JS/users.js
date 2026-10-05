@@ -1,52 +1,41 @@
 const catched_session_data = () => {
     fetch("/api/v1/auth/me")
-        .then((response) => {
+        .then(async (response) => {
             if (response.status === 401) {
-                return response.json().then((data) => {
-                    showSessionExpired(data.message);
-                    return null;
-                });
+                const data = await response.json();
+                showSessionExpired(data.message);
+                return null;
             }
             if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
+                throw new Error(`Error: ${response.status}`);
             }
             return response.json();
         })
         .then((data) => {
             if (!data) return;
 
-            console.log(data);
             const user = data.user;
-
-            const firstLetter = user.name
-                .trim()
-                .charAt(0)
-                .toUpperCase();
-
+            const firstLetter = user.name.trim().charAt(0).toUpperCase();
             document.getElementById("userInitial").textContent = firstLetter;
+            document.getElementById("welcome_message").textContent = `Welcome ${user.name} on Edunest`;
 
-            const mobileMenuButton =
-                document.getElementById("mobileMenuButton");
+            const mobileMenuButton = document.getElementById("mobileMenuButton");
+            const mobileMenu = document.getElementById("mobileMenu");
 
-            const mobileMenu =
-                document.getElementById("mobileMenu");
-
-            if (mobileMenuButton && mobileMenu) {
+            if (mobileMenuButton && mobileMenu){
                 mobileMenuButton.addEventListener("click", function () {
                     mobileMenu.classList.toggle("show");
                 });
             }
         })
         .catch((error) => {
-            console.error("Error fetching session:", error);
+            console.error("Error fetching session");
         });
 };
-
-function showSessionExpired(message) {
+function showSessionExpired(message){
     document.body.innerHTML = `
         <div class="session-expired-wrapper">
             <div class="session-expired-card">
-                
                 <div class="session-expired-icon">
                     <i class="bi bi-clock-history"></i>
                 </div>
@@ -64,11 +53,8 @@ function showSessionExpired(message) {
             </div>
         </div>
     `;
-    document
-        .getElementById("sessionLoginButton")
-        .addEventListener("click", function () {
+    document.getElementById("sessionLoginButton").addEventListener("click", ()=>{
             window.location.href = "/signin.html";
         });
 }
-
 catched_session_data();
