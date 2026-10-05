@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 const forgotPasswordController = async function (req, res) {
     try {
         const { email, newPassword } = req.body;
-
         const [user, faculty, admin] = await Promise.all([
             User.findOne({ email }),
             Faculty.findOne({ email }),

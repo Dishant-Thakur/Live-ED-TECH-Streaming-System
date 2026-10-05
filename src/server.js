@@ -5,22 +5,11 @@ const connectDB = require("./utils/db");
 // const client = require('./utils/client.js');
 const session = require("express-session");
 
-const rateLimiter = require("express-rate-limit");
 const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
 connectDB();
 
-const limiter = rateLimiter({
-  windowMs: 1000 * 60 * 3,
-  limit: 100,
-  statusCode: 429,
-  message: {
-    status: 429,
-    error: "Too many requests",
-    message: "Too many attempts done. Please try again after 3 minutes.",
-  },
-});
 const registerRoutes = require("./routes/registerRoute.js");
 const authRoutes = require("./routes/authRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
@@ -64,16 +53,16 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 3,
-      secure: true,
+      // maxAge: 1000 * 60 * 60 * 24 * 3,
+        maxAge: 1000 * 60 * 1,
+      secure: false,
       sameSite: "lax",
       httpOnly: true,
     },
   }),
 );
-app.use("/api/v1/auth", limiter);
 app.use("/api/v1", registerRoutes);
-app.use("/api/v1", limiter, authRoutes);
+app.use("/api/v1", authRoutes);
 app.use("/api/v1", changePasswordRoute);
 app.use("/", enquiryRoutes);
 
@@ -97,8 +86,8 @@ app.get(["/signin", "/signin.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "signin.html"));
 });
 
-app.get("/forgotPassword.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "forgotPassword.html"));
+app.get("/forgot.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "forgot.html"));
 });
 app.get("/OTP.html", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "OTP.html"));
@@ -108,16 +97,16 @@ app.get(["/signup", "/signup.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "signup.html"));
 });
 
-app.get(["/userDashboard", "/userDashboard.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "userDashboard.html"));
+app.get(["/users", "/users.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "users.html"));
 });
 
-app.get(["/facultyDashboard", "/facultyDashboard.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "facultyDashboard.html"));
+app.get(["/faculty", "/faculty.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "faculty.html"));
 });
 
-app.get(["/adminDashboard", "/adminDashboard.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "adminDashboard.html"));
+app.get(["/admin", "/admin.html"], (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "admin.html"));
 });
 
 app.use((req, res) => {

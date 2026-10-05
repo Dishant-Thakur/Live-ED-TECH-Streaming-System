@@ -12,7 +12,6 @@ function togglePassword(inputId, iconId) {
         icon.classList.add("fa-eye");
     }
 }
-
 const form = document.getElementById("forgotPasswordForm");
 const email = document.getElementById("email");
 const newPassword = document.getElementById("newPassword");

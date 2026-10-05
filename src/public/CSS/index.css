@@ -67,6 +67,23 @@
   color: white;
 }
 
+@media (min-width: 1200px) {
+.enroll_btn{
+  height : 45px !important;
+  width : 120px !important;
+  font-weight: 400;
+}
+}
+
+@media (max-width: 967px) {
+.enroll_btn{
+  height : 35px !important;
+  width : 110px !important;
+  font-weight: 400;
+  font-size : 14px !important;
+}
+}
+
 @media (max-width: 991px) {
   .edunest-navbar {
     height: auto;

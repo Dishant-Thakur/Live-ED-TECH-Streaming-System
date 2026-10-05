@@ -49,7 +49,7 @@ loginForm.addEventListener("submit", async (event) => {
     const contentType = response.headers.get("content-type");
     if (!contentType || !contentType.includes("application/json")) {
         const text = await response.text();
-        validTexts[2].innerText = `Server returned ${response.status}. Check backend route.`;
+        validTexts[2].innerText = `Server error status ${response.status}.`;
         validTexts[2].style.color = "red";
         return;
     }
@@ -63,17 +63,17 @@ loginForm.addEventListener("submit", async (event) => {
 
     if (data.role === "admin") {
         setTimeout(() => {
-            window.location.href = "/adminDashboard.html";
+            window.location.href = "/admin.html";
         },1000);
     } 
     else if (data.role === "faculty") {
         setTimeout(() => {
-            window.location.href = "/facultyDashboard.html";
+            window.location.href = "/faculty.html";
         },1000);
     } 
     else if (data.role === "user") {
         setTimeout(() => {
-            window.location.href = "/userDashboard.html";
+            window.location.href = "/users.html";
         },1000);
     }
     alert('Login successfully');
