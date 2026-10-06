@@ -31,7 +31,6 @@ const authController = async function (req, res) {
                 message: `No ${role} account found. Please register first.`
             });
         }
-
         const passwordMatch = await bcrypt.compare(
             password,
             account.password
@@ -43,23 +42,31 @@ const authController = async function (req, res) {
                 message: "Password does not match."
             });
         }
-        req.session.user = {
-            id: account._id,
-            name: account.name,
-            email: account.email,
-            role: account.role,
-        };
+       
+    req.session.user = {
+    id: account._id,
+    name: account.name,
+    email: account.email,
+    role: account.role,
+};
 
-        console.log(req.session.user);
-        return res.status(200).json({
-            status: true,
-            message: "Login successful",
-            role: account.role
+req.session.save((err) => {
+    if (err) {
+        console.error("Session save error:", err);
+        return res.status(500).json({
+            status: false,
+            message: "Unable to create session."
         });
+    }
 
+    return res.status(200).json({
+        status: true,
+        message: "Login successful",
+        role: account.role
+    });
+});
     } catch (error) {
         console.log("Error:", error);
-
         return res.status(500).json({
             status: false,
             message: "Internal server error"

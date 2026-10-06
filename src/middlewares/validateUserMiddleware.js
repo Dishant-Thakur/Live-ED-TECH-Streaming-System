@@ -9,7 +9,7 @@ const validateUserRegistration = (req, res, next) => {
     email = email.trim().toLowerCase();
     phone = phone.toString().replace(/\s/g, "");
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     const phonePattern = /^[6-9]\d{9}$/;
 
     if (!emailPattern.test(email)) {
@@ -42,7 +42,7 @@ const validateUserLogin = (req, res, next) => {
     }
 
     email = email.trim().toLowerCase();
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
     if (!emailPattern.test(email)) {
         return res.status(400).send("Invalid email format");

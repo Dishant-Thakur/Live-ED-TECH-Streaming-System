@@ -31,8 +31,7 @@ registerForm.addEventListener('submit', async(event) => {
         return;
     }
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     if (!emailPattern.test(email)) {
         validTexts[3].innerText = 'Please enter a valid email';
         validTexts[3].style.color = 'red';
@@ -40,7 +39,6 @@ registerForm.addEventListener('submit', async(event) => {
     }
 
     const phonePattern = /^[6-9]\d{9}$/;
-
     if (!phonePattern.test(phone)) {
         validTexts[2].innerText = 'Invalid phone number';
         validTexts[2].style.color = 'red';

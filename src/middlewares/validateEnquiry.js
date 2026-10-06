@@ -10,7 +10,7 @@ let { name, phone, email, course, qualification, status } = req.body;
     return res.status(400).send("All fields are mandatory");
   }
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
   const phonePattern = /^[6-9]\d{9}$/;
 
   if (!emailPattern.test(email)) {

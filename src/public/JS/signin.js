@@ -19,7 +19,7 @@ loginForm.addEventListener("submit", async (event) => {
   }
 
   email = email.trim().toLowerCase();
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
   if (!emailPattern.test(email)) {
     validTexts[1].innerText = "Please enter a valid email";
@@ -36,6 +36,7 @@ loginForm.addEventListener("submit", async (event) => {
   try {
     const response = await fetch("/api/v1/auth/login", {
         method: "POST",
+        credentials : "include",
         headers: {
             "Content-Type": "application/json",
         },

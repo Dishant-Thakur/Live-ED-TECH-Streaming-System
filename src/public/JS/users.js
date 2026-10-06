@@ -1,11 +1,17 @@
 const catched_session_data = () => {
-    fetch("/api/v1/auth/me")
-        .then(async (response) => {
+    fetch("/api/v1/auth/me",{
+        method: "GET",
+        credentials: "include"
+    }).then(async (response) => {
             if (response.status === 401) {
                 const data = await response.json();
                 showSessionExpired(data.message);
                 return null;
             }
+            if(response.status === 500){
+                throw new Error('Interal server error');
+            }
+            
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
