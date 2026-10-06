@@ -4,7 +4,7 @@ const path = require("path");
 const connectDB = require("./utils/db");
 // const client = require('./utils/client.js');
 const session = require("express-session");
-
+const User = require('./models/userModel');
 const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -108,8 +108,8 @@ app.get(["/admin", "/admin.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "admin.html"));
 });
 
-app.use((req, res) => {
-  res.status(404).send("<h2> OOPS! HTTP ERROR-404 Page Not Found </h2>");
+app.use((req,res)=>{
+  res.send('<h1> HTTP ERROR 404</h1>')
 });
 
 app.listen(PORT, () => {

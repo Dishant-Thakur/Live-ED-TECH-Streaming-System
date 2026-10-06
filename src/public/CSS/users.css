@@ -8,13 +8,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: #172033;
 }
-
 .dashboard-navbar {
     width: 100%;
     padding: 18px 0;
     background: #f8fafc;
 }
-
 .navbar-container {
     width: calc(100% - 80px);
     max-width: 1400px;
@@ -371,12 +369,10 @@ body {
     .session-expired-wrapper {
         padding: 15px;
     }
-
     .session-expired-card {
         padding: 25px 18px;
         border-radius: 14px;
     }
-
     .session-expired-icon {
         width: 60px;
         min-width: 60px;
@@ -391,4 +387,48 @@ body {
     .session-expired-content p {
         font-size: 13px;
     }
+}
+ 
+@media (min-width : 200px) and (max-width : 575px) {
+    #welcome_message{
+        text-align: center;
+        font-size: 22px;
+    }
+
+     .section_heading{
+        text-align: center;
+        font-size: 16px;
+     }
+}
+@media (min-width : 576px) and (max-width : 991px) {
+    #welcome_message{
+        font-size: 25px;
+    }
+    .section_heading{
+        font-size:15px;
+    }
+}
+@media (min-width : 992px) and (max-width : 1199px){
+    #welcome_message{
+        font-size: 28px;
+    }
+    .section_heading{
+        font-size:18px;
+    }
+}
+@media (min-width : 1200px){
+    #welcome_message{
+        font-size: 30px;
+    }
+    .section_heading{
+        font-size:18px;
+    }
+}
+.courses-section{
+    max-height : 100%;
+    max-width : 100%;
+}
+.course-image, .course_content{
+    max-height : 180px;
+    max-width : 250px;
 }
