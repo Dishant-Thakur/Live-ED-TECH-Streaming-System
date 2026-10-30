@@ -42,9 +42,9 @@ const authController = async function (req, res) {
             });
         }
 
-    req.session.regenerate((err) => {
-    if (err) {
-        console.error("Session regeneration error:", err);
+    req.session.regenerate((error) => {
+    if (error) {
+        console.error("Session regeneration error:", error);
 
         return res.status(500).json({
             status: false,
@@ -62,9 +62,9 @@ const authController = async function (req, res) {
 console.log("LOGIN SESSION ID:", req.sessionID);
 console.log("LOGIN SESSION:", req.session);
 
-    req.session.save((err) => {
-        if (err) {
-            console.error("Session save error:", err);
+    req.session.save((error) => {
+        if (error) {
+            console.error("Session save error:", error);
 
             return res.status(500).json({
                 status: false,

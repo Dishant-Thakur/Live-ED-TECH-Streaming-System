@@ -15,6 +15,8 @@ const registerRoutes = require("./routes/registerRoute.js");
 const authRoutes = require("./routes/authRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
 const changePasswordRoute = require("./routes/forgotPasswordRoute.js");
+const coursesRoutes = require("./routes/coursesRoutes.js");
+
 connectDB();
 
 let redisConnectionPromise;
@@ -98,6 +100,7 @@ app.use("/api/v1", registerRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", changePasswordRoute);
 app.use("/", enquiryRoutes);
+app.use("/api/courses", coursesRoutes);
 
 app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));

@@ -7,6 +7,7 @@ const forgot_password = function(req, res, next) {
             message: "Email, new password and confirm password are required."
         });
     }
+    
     email = email.trim().toLowerCase();
     const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
