@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 const authController = async function (req, res) {
     try {
         const { role, email, password } = req.body;
-
         let account = null;
 
         if (role === 'user') {
@@ -42,27 +41,42 @@ const authController = async function (req, res) {
                 message: "Password does not match."
             });
         }
-       
-    req.session.user = {
-    id: account._id,
-    name: account.name,
-    email: account.email,
-    role: account.role,
-};
 
-req.session.save((err) => {
+    req.session.regenerate((err) => {
     if (err) {
-        console.error("Session save error:", err);
+        console.error("Session regeneration error:", err);
+
         return res.status(500).json({
             status: false,
             message: "Unable to create session."
         });
     }
 
-    return res.status(200).json({
-        status: true,
-        message: "Login successful",
-        role: account.role
+    req.session.user = {
+        id: account._id,
+        name: account.name,
+        email: account.email,
+        role: role
+    };
+    
+console.log("LOGIN SESSION ID:", req.sessionID);
+console.log("LOGIN SESSION:", req.session);
+
+    req.session.save((err) => {
+        if (err) {
+            console.error("Session save error:", err);
+
+            return res.status(500).json({
+                status: false,
+                message: "Unable to save session."
+            });
+        }
+
+        return res.status(200).json({
+            status: true,
+            message: "Login successful",
+            role: role
+        });
     });
 });
     } catch (error) {

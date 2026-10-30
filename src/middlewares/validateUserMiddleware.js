@@ -2,7 +2,10 @@ const validateUserRegistration = (req, res, next) => {
     let {role, name, phone, email, password, confirm_pass } = req.body;
 
     if (!role || !name || !phone || !email || !password || !confirm_pass) {
-        return res.status(400).send("All fields are mandatory");
+         return res.status(400).json({
+            status: false,
+            message: "All fields are mandatory"
+        });
     }
 
     name = name.trim();
@@ -13,19 +16,31 @@ const validateUserRegistration = (req, res, next) => {
     const phonePattern = /^[6-9]\d{9}$/;
 
     if (!emailPattern.test(email)) {
-        return res.status(400).send("Invalid email format");
+         return res.status(400).json({
+            status: false,
+            message: "Invalid email format"
+        });
     }
 
     if (!phonePattern.test(phone)) {
-        return res.status(400).send("Invalid phone number");
+         return res.status(400).json({
+            status: false,
+            message: "Please enter a vlaid phone number"
+        });
     }
 
     if (password.length < 8) {
-        return res.status(400).send("Password must be 8 or more characters");
+         return res.status(400).json({
+            status: false,
+            message: "Password must be 8 or more characters"
+        });
     }
 
     if (password !== confirm_pass) {
-        return res.status(400).send("Password does not match");
+         return res.status(400).json({
+            status: false,
+            message: "Password must be matched"
+        });
     }
     req.body.name = name;
     req.body.email = email;
@@ -38,19 +53,37 @@ const validateUserLogin = (req, res, next) => {
     let { role, email, password } = req.body;
 
     if (!role || !email || !password) {
-        return res.status(400).send("All fields are mandatory");
+        return res.status(400).json({
+            status: false,
+            message: "All fields are mandatory"
+        });
+    }
+
+    if (!["user", "faculty", "admin"].includes(role)) {
+        return res.status(400).json({
+            status: false,
+            message: "Invalid role"
+        });
     }
 
     email = email.trim().toLowerCase();
+
     const emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
     if (!emailPattern.test(email)) {
-        return res.status(400).send("Invalid email format");
+        return res.status(400).json({
+            status: false,
+            message: "Invalid email format"
+        });
     }
 
     if (password.length < 8) {
-        return res.status(400).send("Password must be 8 or more characters");
+        return res.status(400).json({
+            status: false,
+            message: "Password must be 8 or more characters"
+        });
     }
+
     req.body.email = email;
     next();
 };

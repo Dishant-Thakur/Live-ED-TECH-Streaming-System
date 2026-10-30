@@ -20,11 +20,9 @@ let { name, phone, email, course, qualification, status } = req.body;
   if (!phonePattern.test(phone)) {
     return res.status(400).send("Invalid phone number");
   }
-
     req.body.name = name;
     req.body.email = email;
     req.body.phone = phone;
-
   next();
 }
 

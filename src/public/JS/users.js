@@ -8,6 +8,10 @@ const catched_session_data = () => {
                 showSessionExpired(data.message);
                 return null;
             }
+            if (response.status === 403) {
+                const data = await response.json();
+                throw new Error('Permission denied.');
+            }
             if(response.status === 500){
                 throw new Error('Interal server error');
             }
@@ -35,7 +39,7 @@ const catched_session_data = () => {
             }
         })
         .catch((error) => {
-            console.error("Error fetching session");
+            console.error("Error fetching session: ", error);
         });
 };
 function showSessionExpired(message){

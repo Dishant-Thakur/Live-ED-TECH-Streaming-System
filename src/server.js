@@ -2,9 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const connectDB = require("./utils/db");
-// const client = require('./utils/client.js');
+
 const session = require("express-session");
-const User = require('./models/userModel');
+const { RedisStore } = require("connect-redis");
+const redisClient = require("./utils/redis");
+
 const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,16 +49,23 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "15kb" }));
 app.set("trust proxy", 1);
+
+const redisStore = new RedisStore({
+    client: redisClient,
+    prefix: "edunest:sessions:",
+    ttl: 60 * 60 * 24 * 3
+});
 app.use(
   session({
+    store: redisStore,
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 3,
       secure: true,
-      sameSite: "lax",
       httpOnly: true,
+      sameSite: "lax",
     },
   }),
 );
@@ -108,11 +117,24 @@ app.get(["/admin", "/admin.html"], (req, res) => {
   res.sendFile(path.join(__dirname, "views", "admin.html"));
 });
 
-app.use((req,res)=>{
-  res.send('<h1> HTTP ERROR 404</h1>')
+app.use((req, res) => {
+  res.send("<h1> HTTP ERROR 404</h1>");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+async function startServer() {
+    try {
+        await redisClient.connect();
+        console.log("Redis connected successfully");
+
+        app.listen(PORT, () => {
+            console.log(`Server running on http://localhost:${PORT}`);
+        });
+
+    } catch (error) {
+        console.error("Server startup error:", error);
+        process.exit(1);
+    }
+}
+
+startServer();
 module.exports = app;

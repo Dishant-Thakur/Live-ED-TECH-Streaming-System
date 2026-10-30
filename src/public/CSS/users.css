@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -8,12 +9,18 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: #172033;
 }
+
 .dashboard-navbar {
+    position: relative;
     width: 100%;
     padding: 18px 0;
     background: #f8fafc;
+    z-index: 1050;
+    overflow: visible;
 }
+
 .navbar-container {
+    position: relative;
     width: calc(100% - 80px);
     max-width: 1400px;
     min-height: 80px;
@@ -25,6 +32,7 @@ body {
     align-items: center;
     gap: 35px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: visible;
 }
 
 .brand {
@@ -45,6 +53,7 @@ body {
     align-items: center;
     gap: 30px;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .nav-link {
@@ -58,12 +67,13 @@ body {
 }
 
 .nav-link:hover {
-    color:  #1268e8;
+    color: #1268e8;
 }
 
 .search-container {
     position: relative;
     flex: 1;
+    min-width: 0;
     max-width: 390px;
     margin-left: auto;
 }
@@ -97,10 +107,14 @@ body {
     color: #222;
     font-size: 17px;
     z-index: 2;
+    pointer-events: none;
 }
 
 .profile-container {
     position: relative;
+    display: block;
+    flex-shrink: 0;
+    z-index: 1060;
 }
 
 .profile-button {
@@ -116,23 +130,133 @@ body {
     font-size: 17px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: 0.25s ease;
 }
 
 .profile-button:hover {
-    transform: scale(1.04);
+    transform: scale(1.07);
+    box-shadow: 0 3px 12px rgba(25, 135, 84, 0.25);
+}
+
+.profile-dropdown {
+    width: 215px !important;
+    min-width: 215px !important;
+    padding: 9px !important;
+    margin-top: 10px !important;
+    border: 1px solid #edf0ed !important;
+    border-radius: 12px !important;
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    animation: profileShow 0.2s ease;
+    z-index: 1070;
+}
+
+@keyframes profileShow {
+    from {
+        opacity: 0;
+        transform: translateY(-5px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.profile-avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.profile-dropdown h6 {
+    font-size: 12px;
+    margin-bottom: 2px !important;
+}
+
+.profile-dropdown small {
+    font-size: 10px;
+}
+
+.profile-dropdown .badge {
+    font-size: 9px;
+    padding: 3px 6px;
+}
+
+.profile-dropdown .dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 7px 8px;
+    margin: 2px 0;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.profile-dropdown .dropdown-item i {
+    font-size: 16px;
+}
+.drop-content {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: 600;
+}
+
+
+.profile-dropdown .dropdown-item:hover {
+    background: #edf7f1;
+    color: #198754;
+    transform: translateX(2px);
+}
+
+.profile-dropdown hr {
+    margin: 7px 0;
+    opacity: 0.12;
+}
+
+.profile-dropdown label {
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.profile-dropdown #fontSizeValue {
+    font-size: 10px;
+    font-weight: 600;
+    color: #198754;
+}
+
+.profile-dropdown .form-range {
+    margin: 0;
+}
+
+.profile-dropdown .form-select {
+    font-size: 11px;
+    padding: 5px 7px;
+    border-radius: 6px;
+}
+
+.profile-dropdown .btn {
+    font-size: 10px;
+    padding: 3px 7px;
+    border-radius: 5px;
 }
 
 .mobile-menu-button {
     display: none;
+    flex-shrink: 0;
     border: none;
     background: transparent;
     font-size: 25px;
     color: #222;
+    cursor: pointer;
 }
 
 .mobile-menu {
     display: none;
+    position: relative;
+    z-index: 1040;
 }
 
 .dashboard-content {
@@ -150,9 +274,7 @@ body {
     color: #6b7280;
 }
 
-
 @media (max-width: 1100px) {
-
     .navbar-container {
         width: calc(100% - 30px);
         gap: 20px;
@@ -171,9 +293,7 @@ body {
     }
 }
 
-
 @media (max-width: 768px) {
-
     .dashboard-navbar {
         padding: 12px 0;
     }
@@ -181,13 +301,13 @@ body {
     .navbar-container {
         width: calc(100% - 20px);
         min-height: 62px;
-        padding: 0 16px;
+        padding: 0 12px;
         border-radius: 14px;
-        gap: 15px;
+        gap: 10px;
     }
 
     .brand img {
-        width: 90px;
+        width: 85px;
     }
 
     .nav-links {
@@ -195,16 +315,34 @@ body {
     }
 
     .search-container {
+        flex: 1;
+        min-width: 0;
         max-width: none;
         margin-left: auto;
     }
 
+    .search-input {
+        height: 38px;
+    }
+
     .profile-container {
-        display: none;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        flex-shrink: 0;
+    }
+
+    .profile-button {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
     }
 
     .mobile-menu-button {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 23px;
     }
 
     .mobile-menu {
@@ -231,33 +369,78 @@ body {
     .mobile-menu a:hover {
         background: #f5f5f5;
     }
+
+    .dashboard-content {
+        margin: 35px auto;
+    }
 }
 
 @media (max-width: 500px) {
-
     .navbar-container {
-        gap: 10px;
+        gap: 8px;
+        padding: 0 10px;
     }
 
     .brand img {
-        width: 80px;
+        width: 72px;
     }
 
     .search-input {
-        height: 38px;
-        padding-left: 40px;
-        font-size: 12px;
+        height: 36px;
+        padding-left: 34px;
+        padding-right: 8px;
+        font-size: 11px;
     }
 
     .search-icon {
-        left: 14px;
-        font-size: 14px;
+        left: 11px;
+        font-size: 13px;
+    }
+
+    .profile-button {
+        width: 35px;
+        height: 35px;
     }
 
     .mobile-menu-button {
-        font-size: 22px;
+        font-size: 21px;
+    }
+
+    .profile-dropdown {
+        width: 205px !important;
+        min-width: 205px !important;
     }
 }
+
+@media (max-width: 350px) {
+    .navbar-container {
+        gap: 6px;
+        padding: 0 7px;
+    }
+
+    .brand img {
+        width: 60px;
+    }
+
+    .search-input {
+        font-size: 10px;
+        padding-left: 28px;
+    }
+
+    .search-icon {
+        left: 9px;
+    }
+
+    .profile-button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .mobile-menu-button {
+        font-size: 19px;
+    }
+}
+
 .session-expired-wrapper {
     min-height: calc(100vh - 80px);
     width: 100%;
@@ -369,10 +552,12 @@ body {
     .session-expired-wrapper {
         padding: 15px;
     }
+
     .session-expired-card {
         padding: 25px 18px;
         border-radius: 14px;
     }
+
     .session-expired-icon {
         width: 60px;
         min-width: 60px;
@@ -388,47 +573,55 @@ body {
         font-size: 13px;
     }
 }
- 
-@media (min-width : 200px) and (max-width : 575px) {
-    #welcome_message{
+
+@media (min-width: 200px) and (max-width: 575px) {
+    #welcome_message {
         text-align: center;
         font-size: 22px;
     }
 
-     .section_heading{
+    .section_heading {
         text-align: center;
         font-size: 16px;
-     }
+    }
 }
-@media (min-width : 576px) and (max-width : 991px) {
-    #welcome_message{
+
+@media (min-width: 576px) and (max-width: 991px) {
+    #welcome_message {
         font-size: 25px;
     }
-    .section_heading{
-        font-size:15px;
+
+    .section_heading {
+        font-size: 15px;
     }
 }
-@media (min-width : 992px) and (max-width : 1199px){
-    #welcome_message{
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    #welcome_message {
         font-size: 28px;
     }
-    .section_heading{
-        font-size:18px;
+
+    .section_heading {
+        font-size: 18px;
     }
 }
-@media (min-width : 1200px){
-    #welcome_message{
+
+@media (min-width: 1200px) {
+    #welcome_message {
         font-size: 30px;
     }
-    .section_heading{
-        font-size:18px;
+    .section_heading {
+        font-size: 18px;
     }
 }
-.courses-section{
-    max-height : 100%;
-    max-width : 100%;
+
+.courses-section {
+    max-height: 100%;
+    max-width: 100%;
 }
-.course-image, .course_content{
-    max-height : 180px;
-    max-width : 250px;
+
+.course-image,
+.course_content {
+    max-height: 180px;
+    max-width: 250px;
 }
