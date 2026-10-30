@@ -1,140 +1,162 @@
 require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const connectDB = require("./utils/db");
-
 const session = require("express-session");
+const helmet = require("helmet");
+
 const { RedisStore } = require("connect-redis");
 const redisClient = require("./utils/redis");
 
-const helmet = require("helmet");
 const app = express();
 const PORT = process.env.PORT || 3000;
-connectDB();
 
 const registerRoutes = require("./routes/registerRoute.js");
 const authRoutes = require("./routes/authRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
 const changePasswordRoute = require("./routes/forgotPasswordRoute.js");
 
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
-        styleSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
-          "https://cdnjs.cloudflare.com",
-          "https://fonts.googleapis.com",
-        ],
-        fontSrc: [
-          "'self'",
-          "https://cdn.jsdelivr.net",
-          "https://cdnjs.cloudflare.com",
-          "https://use.fontawesome.com",
-          "https://fonts.gstatic.com",
-          "data:",
-        ],
+connectDB();
 
-        imgSrc: ["'self'", "data:", "blob:", "https:"],
-        connectSrc: ["'self'", "https://cdn.jsdelivr.net"],
-      },
-    },
-  }),
-);
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true, limit: "15kb" }));
-app.set("trust proxy", 1);
+let redisConnectionPromise;
+async function ensureRedisConnected() {
+    if (redisClient.isReady) return;
+
+    if (!redisConnectionPromise) {
+        redisConnectionPromise = redisClient.connect()
+            .catch((error) => {
+                redisConnectionPromise = null;
+                throw error;
+            });
+    }
+
+    await redisConnectionPromise;
+}
 
 const redisStore = new RedisStore({
     client: redisClient,
     prefix: "edunest:sessions:",
     ttl: 60 * 60 * 24 * 3
 });
+
 app.use(
-  session({
-    store: redisStore,
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 3,
-      secure: true,
-      httpOnly: true,
-      sameSite: "lax",
-    },
-  }),
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                scriptSrc: ["'self'", "https://cdn.jsdelivr.net"],
+                styleSrc: [
+                    "'self'",
+                    "'unsafe-inline'",
+                    "https://cdn.jsdelivr.net",
+                    "https://cdnjs.cloudflare.com",
+                    "https://fonts.googleapis.com"
+                ],
+                fontSrc: [
+                    "'self'",
+                    "https://cdn.jsdelivr.net",
+                    "https://cdnjs.cloudflare.com",
+                    "https://use.fontawesome.com",
+                    "https://fonts.gstatic.com",
+                    "data:"
+                ],
+                imgSrc: ["'self'", "data:", "blob:", "https:"],
+                connectSrc: ["'self'", "https://cdn.jsdelivr.net"]
+            }
+        }
+    })
 );
+
+app.set("trust proxy", 1);
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: "15kb" }));
+app.use(async (req, res, next) => {
+    try {
+        await ensureRedisConnected();
+        next();
+    } catch (error) {
+        console.error("Redis unavailable:", error.message);
+
+        res.status(503).json({
+            success: false,
+            message: "Session service temporarily unavailable"
+        });
+    }
+});
+
+app.use(
+    session({
+        store: redisStore,
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24 * 3,
+            secure: true,
+            httpOnly: true,
+            sameSite: "lax"
+        }
+    })
+);
+
 app.use("/api/v1", registerRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", changePasswordRoute);
 app.use("/", enquiryRoutes);
 
 app.get(["/", "/index.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
+    res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
-app.get(["courses", "/courses.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "courses.html"));
+app.get(["/courses", "/courses.html"], (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "courses.html"));
 });
 
-app.get(["about", "/about.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "about.html"));
+app.get(["/about", "/about.html"], (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "about.html"));
 });
 
-app.get(["contact", "/contact.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "contact.html"));
+app.get(["/contact", "/contact.html"], (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "contact.html"));
 });
 
 app.get(["/signin", "/signin.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "signin.html"));
+    res.sendFile(path.join(__dirname, "views", "signin.html"));
 });
 
 app.get("/forgot.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "forgot.html"));
+    res.sendFile(path.join(__dirname, "views", "forgot.html"));
 });
+
 app.get("/OTP.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "OTP.html"));
+    res.sendFile(path.join(__dirname, "views", "OTP.html"));
 });
 
 app.get(["/signup", "/signup.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "signup.html"));
+    res.sendFile(path.join(__dirname, "views", "signup.html"));
 });
 
 app.get(["/users", "/users.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "users.html"));
+    res.sendFile(path.join(__dirname, "views", "users.html"));
 });
 
 app.get(["/faculty", "/faculty.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "faculty.html"));
+    res.sendFile(path.join(__dirname, "views", "faculty.html"));
 });
 
 app.get(["/admin", "/admin.html"], (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "admin.html"));
+    res.sendFile(path.join(__dirname, "views", "admin.html"));
 });
 
 app.use((req, res) => {
-  res.send("<h1> HTTP ERROR 404</h1>");
+    res.status(404).send("<h1>HTTP ERROR 404</h1>");
 });
 
-async function startServer() {
-    try {
-        await redisClient.connect();
-        console.log("Redis connected successfully");
-
-        app.listen(PORT, () => {
-            console.log(`Server running on http://localhost:${PORT}`);
-        });
-
-    } catch (error) {
-        console.error("Server startup error:", error);
-        process.exit(1);
-    }
-}
-
-startServer();
 module.exports = app;
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
