@@ -261,7 +261,7 @@ body {
 
 .dashboard-content {
     max-width: 1400px;
-    margin: 50px auto;
+    margin: 50px;
     padding: 0 30px;
 }
 
@@ -615,13 +615,362 @@ body {
     }
 }
 
-.courses-section {
-    max-height: 100%;
-    max-width: 100%;
+.courses-main {
+    width: 100%;
+    padding: 25px 0 70px;
+    background: #f8fafc;
 }
 
-.course-image,
-.course_content {
-    max-height: 180px;
-    max-width: 250px;
+.courses-container {
+    max-width: 1450px;
+    margin: auto;
+    padding: 0 35px;
+}
+
+.courses-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.courses-subtitle {
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.courses-header h2 {
+    margin: 7px 0;
+    color: #172033;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.courses-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.course-navigation {
+    display: flex;
+    gap: 10px;
+}
+
+.course-navigation button {
+    width: 43px;
+    height: 43px;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #172033;
+    font-size: 18px;
+    transition: 0.25s ease;
+}
+
+.course-navigation button:hover {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    transform: translateY(-2px);
+}
+
+.course-navigation button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.courses-slider {
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.courses-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.courses-row {
+    padding-bottom: 10px;
+}
+
+.course-card {
+    height: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e5eaf1;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-6px);
+    border-color: #cbd5e1;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.09);
+}
+
+.course-image {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    padding: 12px;
+}
+
+.course-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.course-tag {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    padding: 6px 13px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 20px;
+}
+.course-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 13px 18px 17px;
+}
+
+.course-category {
+    margin-bottom: 9px;
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.course-body h5 {
+    margin-bottom: 10px;
+    color: #172033;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.course-body p {
+    min-height: 66px;
+    margin-bottom: 18px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.7;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.course-pricing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: auto;
+    padding-bottom: 16px;
+}
+
+.current-price {
+    color: #172033;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.old-price {
+    margin-left: 5px;
+    color: #94a3b8;
+    font-size: 13px;
+    text-decoration: line-through;
+}
+
+.discount-badge {
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.course-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid #edf0f5;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.course-details i {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #172033;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.course-details:hover {
+    color: #2563eb;
+}
+
+.course-details:hover i {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+@media (max-width: 991px) {
+    .courses-container {
+        padding: 0 22px;
+    }
+
+    .courses-header h2 {
+        font-size: 28px;
+    }
+
+    .course-image {
+        height: 180px;
+    }
+
+}
+
+@media (max-width: 575px) {
+
+    .courses-main {
+        padding-top: 15px;
+    }
+
+    .courses-container {
+        padding: 0 16px;
+    }
+
+    .courses-header {
+        align-items: center;
+        gap: 10px;
+    }
+
+    .courses-header h2 {
+        font-size: 23px;
+    }
+
+    .courses-header p {
+        font-size: 12px;
+    }
+
+    .courses-subtitle {
+        font-size: 16px;
+    }
+
+    .course-navigation {
+        gap: 6px;
+    }
+
+    .course-navigation button {
+        width: 35px;
+        height: 35px;
+        font-size: 15px;
+    }
+
+    .course-image {
+        height: 200px;
+    }
+
+    .course-body h5 {
+        font-size: 18px;
+    }
+
+    .course-body p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 350px) {
+
+    .courses-header h2 {
+        font-size: 20px;
+    }
+
+    .course-navigation button {
+        width: 31px;
+        height: 31px;
+    }
+
+    .current-price {
+        font-size: 19px;
+    }
+
+}
+
+
+.footer-header{
+  color:white;
+  padding:10px;
+  font-size: 19px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ft-links{
+  padding-left:0px;
+}
+.ft-links li a{
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+.footer-part{
+  background-color: #191970;
+}
+.footer-text{
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ft-details{
+  padding-left: 0px;
+  list-style: none;
+}
+
+.ft-details li {
+  font-size: 16px;
+  font-weight: 400;
+  padding : 3px
+}
+.ft-social{
+  display: flex;
+  justify-content: center;
+  gap:30px;
+  background-color: white;
+  font-size: 29px;
+  padding-left:0px;
+  text-decoration: none;
+  list-style: none;
 }

@@ -81,42 +81,230 @@
         <p class="section_heading">Continue learning and explore new courses.</p>
     </section>
 
-    <main class="container-fluid">
-        <div class="container">
-            <h class="fs-4">Featured</h1>
+    <main class="courses-main">
+    <div class="container-fluid courses-container">
+        <div class="courses-header mt-0">
+            <div>
+                <span class="courses-subtitle">LEARN SOMETHING NEW</span>
+                <h2>Featured Courses</h2>
+                <p>Explore our most popular learning programs.</p>
+            </div>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 courses-elements mt-2">
-                    <div class="col shadow-lg rounded-3 courses-section">
-                        <div class="course-image">
-                            <img src="/IMAGES/frontend.png" alt="frontend course" loading="lazy"
-                                class="img-fluid rounded-3">
-                        </div>
+            <div class="course-navigation">
+                <button type="button" id="coursePrev" aria-label="Previous courses">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
 
-                        <div class="course_content mt-5">
-                            <p class="fs-5">HTML, CSS, JAVASCRIPT</p>
-                        </div>
-
-                    </div>
-
-                    <div class="col shadow-lg rounded-3">
-                        <div class="course-image">
-                            <img src="/IMAGES/backend.png" alt="backend course" loading="lazy"
-                                class="img-fluid rounded-3">
-                        </div>
-
-                    </div>
-
-                    <div class="col shadow-lg rounded-3">
-
-                    </div>
-
-                    <div class="col shadow-lg rounded-3">
-
-                    </div>
-
-                </div>
+                <button type="button" id="courseNext" aria-label="Next courses">
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
         </div>
-    </main>
+
+        <div class="courses-slider" id="coursesSlider">
+            <div class="row g-4 flex-nowrap courses-row">
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="course-card">
+
+                        <div class="course-image">
+                            <img src="/IMAGES/Frontend.png"
+                                alt="Frontend Development Course"
+                                loading="lazy">
+
+                            <span class="course-tag">NEW</span>
+                        </div>
+
+                        <div class="course-body">
+                            <span class="course-category">Web Development</span>
+
+                            <h5>Frontend Development</h5>
+                            <p class="fs-6">
+                                Master HTML, CSS, JavaScript and modern
+                                frontend development technologies.
+                            </p>
+
+                            <div class="course-pricing">
+                                <div>
+                                    <span class="current-price">₹2,999</span>
+                                    <span class="old-price">₹3,999</span>
+                                </div>
+
+                                <span class="discount-badge">25% OFF</span>
+                            </div>
+
+                            <a href="#" class="course-details">
+                                View Details
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="course-card">
+
+                        <div class="course-image">
+                            <img src="/IMAGES/backend.png"
+                                alt="Backend Development Course"
+                                loading="lazy">
+
+                            <span class="course-tag">NEW</span>
+                        </div>
+
+                        <div class="course-body">
+                            <span class="course-category">Backend Development</span>
+                            <h5>Backend Development</h5>
+
+                            <p class="fs-6">
+                                Learn Node.js, Express.js, databases,
+                                authentication and API development.
+                            </p>
+
+                            <div class="course-pricing">
+                                <div>
+                                    <span class="current-price">₹3,499</span>
+                                    <span class="old-price">₹4,999</span>
+                                </div>
+
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+
+                            <a href="#" class="course-details">
+                                View Details
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="course-card">
+
+                        <div class="course-image">
+                            <img src="/IMAGES/Frontend.png"
+                                alt="Full Stack Development Course"
+                                loading="lazy">
+                        </div>
+
+                        <div class="course-body">
+                            <span class="course-category">Full Stack</span>
+                            <h5>Full Stack Development</h5>
+
+                            <p class="fs-6">
+                                Build complete web applications using
+                                frontend, backend and databases.
+                            </p>
+
+                            <div class="course-pricing">
+                                <div>
+                                    <span class="current-price">₹4,499</span>
+                                    <span class="old-price">₹5,999</span>
+                                </div>
+
+                                <span class="discount-badge">25% OFF</span>
+                            </div>
+
+                            <a href="#" class="course-details">
+                                View Details
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="course-card">
+
+                        <div class="course-image">
+                            <img src="/IMAGES/backend.png"
+                                alt="Data Structures and Algorithms Course"
+                                loading="lazy">
+                        </div>
+
+                        <div class="course-body">
+
+                            <span class="course-category">Programming</span>
+
+                            <h5>DSA With C++</h5>
+
+                            <p class="fs-6">
+                                Strengthen problem-solving skills with
+                                data structures and algorithms.
+                            </p>
+
+                            <div class="course-pricing">
+                                <div>
+                                    <span class="current-price">₹2,499</span>
+                                    <span class="old-price">₹3,999</span>
+                                </div>
+
+                                <span class="discount-badge">37% OFF</span>
+                            </div>
+
+                            <a href="#" class="course-details">
+                                View Details
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+  <footer class = "container-fluid footer-part">
+    <section class="container">
+      <div class="row  row-cols-1 row-cols-sm-2  row-cols-lg-5">
+        <div class="footer-image ">
+          <img src="/IMAGES/Edunest logo.png" alt="Edunest" class="img-fluid" loading="lazy"/>
+          <p class="footer-text">Learn, collaborate, and grow with a community that builds real-world skills together.</p>
+        </div>
+
+        <div class="footer-header">Quick Links
+          <ul class="ft-links mt-2">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Abouts us</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-header">Popular Courses
+           <ul class="ft-links mt-2">
+            <li><a href="#">Full Stack Web Development</a></li>
+            <li><a href="#">Data Structures and Algorithms</a></li>
+            <li><a href="#">Data Science</a></li>
+            <li><a href="#">System Design</a></li>
+            <li><a href="#">MERN Stack</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-header">Contact us
+           <ul class="ft-details mt-2">
+            <li><i class="fa-solid fa-phone"></i>  Contact us: 95138831xx</li>
+            <li><i class="fa-solid fa-envelope"></i>  info.Edunest@gmail.com</li>
+            <li><i class="fa-solid fa-location-dot"></i>   Plot No. B-8, Tower A, 101–119, One Sector 62, Indiranagar 560038, Banglore, karnataka, India</li>
+          </ul>
+        </div>
+
+        <div class="footer-header">Reach us on
+        <ul class="ft-social mt-2">
+          <li><a href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-telegram"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  <p class="footer-text">Copyright © 2026 EduStream. All rights reserved.</p>
+  </section>
+  </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/JS/users.js"> </script>

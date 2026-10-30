@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const express = require("express");
 const path = require("path");
 const connectDB = require("./utils/db");
@@ -16,7 +15,6 @@ const registerRoutes = require("./routes/registerRoute.js");
 const authRoutes = require("./routes/authRoute.js");
 const enquiryRoutes = require("./routes/enquiryRoute.js");
 const changePasswordRoute = require("./routes/forgotPasswordRoute.js");
-
 connectDB();
 
 let redisConnectionPromise;
@@ -30,10 +28,8 @@ async function ensureRedisConnected() {
                 throw error;
             });
     }
-
     await redisConnectionPromise;
 }
-
 const redisStore = new RedisStore({
     client: redisClient,
     prefix: "edunest:sessions:",
@@ -67,7 +63,6 @@ app.use(
         }
     })
 );
-
 app.set("trust proxy", 1);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -85,7 +80,6 @@ app.use(async (req, res, next) => {
         });
     }
 });
-
 app.use(
     session({
         store: redisStore,
@@ -94,13 +88,12 @@ app.use(
         saveUninitialized: false,
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 3,
-            secure: true,
+            secure: false,
             httpOnly: true,
             sameSite: "lax"
         }
     })
 );
-
 app.use("/api/v1", registerRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", changePasswordRoute);

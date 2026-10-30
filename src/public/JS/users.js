@@ -68,3 +68,43 @@ function showSessionExpired(message){
         });
 }
 catched_session_data();
+
+const coursesSlider = document.getElementById("coursesSlider");
+const coursePrev = document.getElementById("coursePrev");
+const courseNext = document.getElementById("courseNext");
+
+if (coursesSlider && coursePrev && courseNext) {
+
+    function updateCourseButtons() {
+
+        const maxScroll =
+            coursesSlider.scrollWidth - coursesSlider.clientWidth;
+
+        coursePrev.disabled = coursesSlider.scrollLeft <= 5;
+
+        courseNext.disabled =
+            coursesSlider.scrollLeft >= maxScroll - 5;
+    }
+
+    courseNext.addEventListener("click", () => {
+
+        coursesSlider.scrollBy({
+            left: coursesSlider.clientWidth * 0.8,
+            behavior: "smooth"
+        });
+
+    });
+
+    coursePrev.addEventListener("click", () => {
+
+        coursesSlider.scrollBy({
+            left: -coursesSlider.clientWidth * 0.8,
+            behavior: "smooth"
+        });
+
+    });
+
+    coursesSlider.addEventListener("scroll", updateCourseButtons);
+    window.addEventListener("resize", updateCourseButtons);
+    updateCourseButtons();
+}
