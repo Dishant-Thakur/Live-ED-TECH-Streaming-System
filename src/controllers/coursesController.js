@@ -2,8 +2,13 @@ const Course = require("../models/courses");
 const createCourses = async (req, res) => {
   try {
     const { title, description, thumbnail, price, originalPrice } = req.body;
-
-    if (!title ||!description || !thumbnail ||price === undefined ||originalPrice === undefined) {
+    if (
+      !title ||
+      !description ||
+      !thumbnail ||
+      price === undefined ||
+      originalPrice === undefined
+    ) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -24,7 +29,6 @@ const createCourses = async (req, res) => {
       message: "Course created successfully",
       course: newCourse,
     });
-
   } catch (error) {
     console.error("Create course error:", error);
 
@@ -46,7 +50,6 @@ const getAllCourses = async (req, res) => {
       totalCourses: courses.length,
       courses,
     });
-
   } catch (error) {
     console.error("Get courses error:", error);
 
@@ -57,4 +60,4 @@ const getAllCourses = async (req, res) => {
   }
 };
 
-module.exports = {createCourses, getAllCourses};
+module.exports = { createCourses, getAllCourses };

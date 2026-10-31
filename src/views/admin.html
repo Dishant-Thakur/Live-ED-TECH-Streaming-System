@@ -1,352 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edunest | Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/CSS/admin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edunest | Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/CSS/admin.css">
 </head>
-
 <body>
-    <div class="app-shell">
-        <aside class="sidebar" id="sidebar">
-            <div class="brand-wrap">
-                <div class="brand-mark"><i class="bi bi-mortarboard-fill"></i></div>
-                <div class="brand-name">edu<span>nest</span><small>ADMIN CONSOLE</small></div>
-                <button class="btn sidebar-close d-lg-none" id="sidebarClose" aria-label="Close menu"><i
-                        class="bi bi-x-lg"></i></button>
-            </div>
-
-            <div class="sidebar-label">WORKSPACE</div>
-            <nav class="side-nav">
-                <a class="nav-link active" href="dashboard.html"><i
-                        class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></a>
-                <a class="nav-link" href="courses.html"><i class="bi bi-play-btn"></i><span>Courses</span><span
-                        class="nav-count">12</span></a>
-                <a class="nav-link" href="students.html"><i class="bi bi-people"></i><span>Students</span></a>
-                <a class="nav-link" href="faculty.html"><i class="bi bi-person-workspace"></i><span>Faculty</span></a>
-                <a class="nav-link" href="enrollments.html"><i
-                        class="bi bi-journal-check"></i><span>Enrollments</span></a>
-                <a class="nav-link" href="transactions.html"><i
-                        class="bi bi-credit-card"></i><span>Transactions</span></a>
-                <a class="nav-link" href="live-classes.html"><i class="bi bi-camera-video"></i><span>Live
-                        classes</span><span class="live-dot"></span></a>
-            </nav>
-
-            <div class="sidebar-label mt-4">PLATFORM</div>
-            <nav class="side-nav">
-                <a class="nav-link" href="analytics.html"><i class="bi bi-bar-chart-line"></i><span>Analytics</span></a>
-                <a class="nav-link" href="announcements.html"><i
-                        class="bi bi-megaphone"></i><span>Announcements</span></a>
-                <a class="nav-link" href="enquiries.html"><i
-                        class="bi bi-chat-left-text"></i><span>Enquiries</span><span
-                        class="nav-count muted-count">4</span></a>
-            </nav>
-
-            <div class="sidebar-bottom">
-                <div class="help-card">
-                    <div class="help-icon"><i class="bi bi-headset"></i></div>
-                    <strong>Need help?</strong>
-                    <p>Visit the admin support centre.</p>
-                    <a href="support.html">Get support <i class="bi bi-arrow-up-right"></i></a>
-                </div>
-                <a class="nav-link" href="settings.html"><i class="bi bi-gear"></i><span>Settings</span></a>
-                <button class="nav-link logout-link" id="logoutBtn"><i class="bi bi-box-arrow-left"></i><span>Log
-                        out</span></button>
-            </div>
-        </aside>
-
-        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-
-        <main class="main-area">
-            <header class="topbar">
-                <div class="d-flex align-items-center gap-3">
-                    <button class="icon-btn menu-toggle d-lg-none" id="menuToggle" aria-label="Open menu"><i
-                            class="bi bi-list"></i></button>
-                    <div class="breadcrumb-line"><span>Workspace</span><i
-                            class="bi bi-chevron-right"></i><strong>Dashboard</strong></div>
-                </div>
-                <div class="topbar-actions">
-                    <label class="global-search">
-                        <i class="bi bi-search"></i>
-                        <input id="globalSearch" type="search" placeholder="Search anything..."
-                            aria-label="Search dashboard">
-                        <kbd>⌘ K</kbd>
-                    </label>
-                    <button class="icon-btn theme-toggle" id="themeToggle" title="Toggle theme"
-                        aria-label="Toggle theme"><i class="bi bi-moon"></i></button>
-                    <div class="dropdown">
-                        <button class="icon-btn notification-btn" data-bs-toggle="dropdown" aria-expanded="false"
-                            aria-label="Notifications">
-                            <i class="bi bi-bell"></i><span class="notification-indicator"></span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end notification-menu">
-                            <div class="dropdown-heading"><strong>Notifications</strong><a
-                                    href="notifications.html">View all</a></div>
-                            <div class="notification-item"><span class="notice-icon blue"><i
-                                        class="bi bi-person-plus"></i></span>
-                                <div><strong>New student registered</strong><small>12 minutes ago</small></div>
-                            </div>
-                            <div class="notification-item"><span class="notice-icon purple"><i
-                                        class="bi bi-credit-card"></i></span>
-                                <div><strong>Payment received</strong><small>48 minutes ago</small></div>
-                            </div>
-                            <div class="notification-item"><span class="notice-icon orange"><i
-                                        class="bi bi-chat-dots"></i></span>
-                                <div><strong>New enquiry received</strong><small>2 hours ago</small></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <button class="profile-trigger" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="avatar">AD</span><span class="profile-copy"><strong>Admin</strong><small>Super
-                                    Admin</small></span><i class="bi bi-chevron-down profile-chevron"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end profile-menu">
-                            <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person"></i> My profile</a>
-                            </li>
-                            <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear"></i> Account
-                                    settings</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><button class="dropdown-item text-danger" id="profileLogout"><i
-                                        class="bi bi-box-arrow-right"></i> Log out</button></li>
-                        </ul>
-                    </div>
-                </div>
-            </header>
-
-            <div class="content-wrap">
-                <section class="welcome-row">
-                    <div>
-                        <div class="eyebrow"><span class="eyebrow-dot"></span> PLATFORM OVERVIEW</div>
-                        <h1>Good morning, Admin <span class="wave">✦</span></h1>
-                        <p>Here’s what’s happening across your Edunest platform today.</p>
-                    </div>
-                    <div class="welcome-actions">
-                        <span class="date-label"><i class="bi bi-calendar3"></i><span id="todayDate">Today</span></span>
-                        <a class="btn btn-primary action-primary" href="create-course.html"><i
-                                class="bi bi-plus-lg"></i> Create course</a>
-                    </div>
-                </section>
-
-                <section class="stats-grid">
-                    <article class="stat-card">
-                        <div class="stat-top"><span class="stat-icon icon-blue"><i
-                                    class="bi bi-people-fill"></i></span><span class="trend positive"><i
-                                    class="bi bi-arrow-up-right"></i> 12.8%</span></div>
-                        <p>Total students</p>
-                        <h2>2,450</h2><small>Compared with last month</small>
-                    </article>
-                    <article class="stat-card">
-                        <div class="stat-top"><span class="stat-icon icon-purple"><i
-                                    class="bi bi-person-video3"></i></span><span class="trend positive"><i
-                                    class="bi bi-arrow-up-right"></i> 8.2%</span></div>
-                        <p>Total faculty</p>
-                        <h2>35</h2><small>Compared with last month</small>
-                    </article>
-                    <article class="stat-card">
-                        <div class="stat-top"><span class="stat-icon icon-cyan"><i
-                                    class="bi bi-collection-play-fill"></i></span><span class="trend positive"><i
-                                    class="bi bi-arrow-up-right"></i> 5.4%</span></div>
-                        <p>Total courses</p>
-                        <h2>120</h2><small>Across the platform</small>
-                    </article>
-                    <article class="stat-card">
-                        <div class="stat-top"><span class="stat-icon icon-green"><i
-                                    class="bi bi-journal-check"></i></span><span class="trend positive"><i
-                                    class="bi bi-arrow-up-right"></i> 16.3%</span></div>
-                        <p>Enrollments</p>
-                        <h2>1,850</h2><small>Compared with last month</small>
-                    </article>
-                    <article class="stat-card revenue-card">
-                        <div class="stat-top"><span class="stat-icon icon-orange"><i
-                                    class="bi bi-wallet2"></i></span><span class="trend positive"><i
-                                    class="bi bi-arrow-up-right"></i> 10.6%</span></div>
-                        <p>Total revenue</p>
-                        <h2>₹4,50,000</h2><small>Compared with last month</small>
-                    </article>
-                </section>
-
-                <section class="analytics-grid">
-                    <article class="panel chart-panel">
-                        <div class="panel-heading">
-                            <div>
-                                <h3>Enrollment overview</h3>
-                                <p>Student enrollment activity over time</p>
-                            </div>
-                            <div class="select-wrap"><select id="enrollmentPeriod" aria-label="Enrollment period">
-                                    <option value="week">This week</option>
-                                    <option value="month" selected>This month</option>
-                                    <option value="year">This year</option>
-                                </select><i class="bi bi-chevron-down"></i></div>
-                        </div>
-                        <div class="chart-summary"><strong>1,850</strong><span class="trend positive"><i
-                                    class="bi bi-arrow-up-right"></i> 16.3%</span><small>total enrollments</small></div>
-                        <div class="chart-container"><canvas id="enrollmentChart"></canvas></div>
-                    </article>
-                    <article class="panel revenue-panel">
-                        <div class="panel-heading">
-                            <div>
-                                <h3>Revenue summary</h3>
-                                <p>Revenue distribution</p>
-                            </div><button class="more-btn" aria-label="More options"><i
-                                    class="bi bi-three-dots"></i></button>
-                        </div>
-                        <div class="revenue-total"><strong>₹4,50,000</strong><span class="trend positive"><i
-                                    class="bi bi-arrow-up-right"></i> 10.6%</span></div>
-                        <div class="chart-container doughnut-container"><canvas id="revenueChart"></canvas>
-                            <div class="doughnut-center"><strong>₹4.5L</strong><small>Total revenue</small></div>
-                        </div>
-                        <div class="legend-list">
-                            <div><span class="legend-dot legend-blue"></span>Course payments <strong>72%</strong></div>
-                            <div><span class="legend-dot legend-purple"></span>Other payments <strong>28%</strong></div>
-                        </div>
-                    </article>
-                </section>
-
-                <section class="bottom-grid">
-                    <article class="panel table-panel">
-                        <div class="panel-heading table-heading">
-                            <div>
-                                <h3>Recent enrollments</h3>
-                                <p>Latest student course registrations</p>
-                            </div>
-                            <a href="enrollments.html" class="text-link">View all <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table dashboard-table align-middle mb-0" id="enrollmentTable">
-                                <thead>
-                                    <tr>
-                                        <th>STUDENT</th>
-                                        <th>COURSE</th>
-                                        <th>DATE</th>
-                                        <th>PAYMENT</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="person-cell"><span
-                                                    class="mini-avatar avatar-a">RK</span><span><strong>Rahul
-                                                        Kumar</strong><small>rahul.k@email.com</small></span></div>
-                                        </td>
-                                        <td>Full Stack Development</td>
-                                        <td>30 Oct 2026</td>
-                                        <td><span class="status-pill paid">Paid</span></td>
-                                        <td><a class="row-action" href="enrollments.html"
-                                                aria-label="View Rahul enrollment"><i
-                                                    class="bi bi-arrow-up-right"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="person-cell"><span
-                                                    class="mini-avatar avatar-b">PS</span><span><strong>Priya
-                                                        Sharma</strong><small>priya.s@email.com</small></span></div>
-                                        </td>
-                                        <td>Data Structures & Algorithms</td>
-                                        <td>29 Oct 2026</td>
-                                        <td><span class="status-pill paid">Paid</span></td>
-                                        <td><a class="row-action" href="enrollments.html"
-                                                aria-label="View Priya enrollment"><i
-                                                    class="bi bi-arrow-up-right"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="person-cell"><span
-                                                    class="mini-avatar avatar-c">AS</span><span><strong>Arjun
-                                                        Singh</strong><small>arjun.s@email.com</small></span></div>
-                                        </td>
-                                        <td>UI/UX Design Fundamentals</td>
-                                        <td>29 Oct 2026</td>
-                                        <td><span class="status-pill pending">Pending</span></td>
-                                        <td><a class="row-action" href="enrollments.html"
-                                                aria-label="View Arjun enrollment"><i
-                                                    class="bi bi-arrow-up-right"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="person-cell"><span
-                                                    class="mini-avatar avatar-d">NG</span><span><strong>Neha
-                                                        Gupta</strong><small>neha.g@email.com</small></span></div>
-                                        </td>
-                                        <td>Backend with Node.js</td>
-                                        <td>28 Oct 2026</td>
-                                        <td><span class="status-pill paid">Paid</span></td>
-                                        <td><a class="row-action" href="enrollments.html"
-                                                aria-label="View Neha enrollment"><i
-                                                    class="bi bi-arrow-up-right"></i></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="empty-search d-none" id="emptySearch">No matching enrollments found.</div>
-                        </div>
-                    </article>
-
-                    <article class="panel activity-panel">
-                        <div class="panel-heading">
-                            <div>
-                                <h3>Recent activity</h3>
-                                <p>Latest platform updates</p>
-                            </div><button class="more-btn" aria-label="More options"><i
-                                    class="bi bi-three-dots"></i></button>
-                        </div>
-                        <div class="activity-list">
-                            <div class="activity-item"><span class="activity-icon activity-blue"><i
-                                        class="bi bi-person-plus"></i></span>
-                                <div><strong>New student registered</strong>
-                                    <p>Rahul Kumar created an account.</p><small>12 minutes ago</small>
-                                </div>
-                            </div>
-                            <div class="activity-item"><span class="activity-icon activity-purple"><i
-                                        class="bi bi-camera-video"></i></span>
-                                <div><strong>Live class scheduled</strong>
-                                    <p>React Fundamentals · 4:00 PM</p><small>45 minutes ago</small>
-                                </div>
-                            </div>
-                            <div class="activity-item"><span class="activity-icon activity-green"><i
-                                        class="bi bi-check2-circle"></i></span>
-                                <div><strong>Course published</strong>
-                                    <p>Backend Development with Node.js</p><small>2 hours ago</small>
-                                </div>
-                            </div>
-                            <div class="activity-item"><span class="activity-icon activity-orange"><i
-                                        class="bi bi-credit-card"></i></span>
-                                <div><strong>Payment received</strong>
-                                    <p>₹999 from Priya Sharma.</p><small>3 hours ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="activity.html" class="activity-footer">View activity history <i
-                                class="bi bi-arrow-right"></i></a>
-                    </article>
-                </section>
-                <footer class="footer-line"><span>© 2026 Edunest. All rights reserved.</span><span>Admin Console <i
-                            class="bi bi-circle-fill"></i> System operational</span></footer>
-            </div>
-        </main>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand-wrap">
+      <div class="brand-mark"><i class="bi bi-mortarboard-fill"></i></div>
+      <div class="brand-name">Edunest</div>
+      <button class="sidebar-close d-lg-none" id="sidebarClose" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
     </div>
 
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="dashboardToast" class="toast border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body" id="toastMessage">Action</div><button type="button"
-                    class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
+    <nav class="side-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="admin.html"><i class="bi bi-house-door-fill"></i><span>Dashboard</span></a>
+      <a class="nav-link" href="users.html"><i class="bi bi-people"></i><span>Users</span></a>
+      <a class="nav-link" href="courses.html"><i class="bi bi-book"></i><span>Courses</span><i class="bi bi-chevron-right nav-chevron"></i></a>
+      <a class="nav-link" href="live-classes.html"><i class="bi bi-camera-video"></i><span>Live Classes</span></a>
+      <a class="nav-link" href="enrollments.html"><i class="bi bi-file-earmark-text"></i><span>Enrollments</span></a>
+      <a class="nav-link" href="payments.html"><i class="bi bi-wallet2"></i><span>Payments</span></a>
+      <a class="nav-link" href="categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+      <a class="nav-link" href="faculty.html"><i class="bi bi-person-workspace"></i><span>Faculty</span></a>
+      <a class="nav-link" href="settings.html"><i class="bi bi-gear"></i><span>Settings</span></a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a class="website-link" href="/" target="_blank" rel="noopener"><i class="bi bi-globe2"></i><span>Visit Website</span><i class="bi bi-box-arrow-up-right ms-auto"></i></a>
+      <button class="nav-link logout-link" id="logoutBtn"><i class="bi bi-box-arrow-left"></i><span>Log out</span></button>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <main class="main-area">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open navigation"><i class="bi bi-list"></i></button>
+        <label class="global-search"><i class="bi bi-search"></i><input id="globalSearch" type="search" placeholder="Search users, courses, enrollments..." aria-label="Search users, courses and enrollments"></label>
+      </div>
+      <div class="topbar-actions">
+        <div class="dropdown">
+          <button class="profile-trigger" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="avatar">A</span><span class="profile-copy"><strong>Admin</strong><small>Super Admin</small></span><i class="bi bi-chevron-down profile-chevron"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end profile-menu">
+            <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person"></i> My profile</a></li>
+            <li><a class="dropdown-item" href="settings.html"><i class="bi bi-gear"></i> Account settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item text-danger" id="profileLogout"><i class="bi bi-box-arrow-right"></i> Log out</button></li>
+          </ul>
         </div>
+      </div>
+    </header>
+
+    <div class="content-wrap">
+      <section class="welcome-row">
+        <div><h1>Welcome Back, Admin</h1><p>Manage your platform, monitor activity and grow Edunest.</p></div>
+      </section>
+
+      <section class="stats-grid">
+        <a class="stat-card" href="users.html">
+          <span class="stat-icon icon-blue"><i class="bi bi-people-fill"></i></span>
+          <div class="stat-content"><p>Total Users</p><h2>12,458</h2><span class="trend"><i class="bi bi-arrow-up-right"></i> +12.5%</span><span class="stat-link">View all users <i class="bi bi-arrow-right"></i></span></div>
+        </a>
+        <a class="stat-card" href="courses.html">
+          <span class="stat-icon icon-purple"><i class="bi bi-mortarboard-fill"></i></span>
+          <div class="stat-content"><p>Total Courses</p><h2>235</h2><span class="trend"><i class="bi bi-arrow-up-right"></i> +8.3%</span><span class="stat-link">View all courses <i class="bi bi-arrow-right"></i></span></div>
+        </a>
+        <a class="stat-card" href="enrollments.html">
+          <span class="stat-icon icon-green"><i class="bi bi-cart-fill"></i></span>
+          <div class="stat-content"><p>Total Enrollments</p><h2>4,892</h2><span class="trend"><i class="bi bi-arrow-up-right"></i> +18.4%</span><span class="stat-link">View enrollments <i class="bi bi-arrow-right"></i></span></div>
+        </a>
+        <a class="stat-card" href="payments.html">
+          <span class="stat-icon icon-orange"><i class="bi bi-currency-rupee"></i></span>
+          <div class="stat-content"><p>Total Revenue</p><h2>₹12,48,320</h2><span class="trend"><i class="bi bi-arrow-up-right"></i> +22.1%</span><span class="stat-link">View payments <i class="bi bi-arrow-right"></i></span></div>
+        </a>
+      </section>
+
+      <section class="tables-grid">
+        <article class="panel table-panel">
+          <div class="panel-heading"><h3>Recent Enrollments</h3><a href="enrollments.html">View All</a></div>
+          <div class="table-responsive">
+            <table class="table dashboard-table align-middle mb-0 searchable-table">
+              <thead><tr><th>#</th><th>Student</th><th>Course</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td><span class="table-person"><span class="person-avatar avatar-a">AS</span>Aarav Sharma</span></td><td>Full Stack Web Development</td><td>₹4,999</td><td>Oct 31, 2026</td><td><span class="status-pill paid">Paid</span></td></tr>
+                <tr><td>2</td><td><span class="table-person"><span class="person-avatar avatar-b">PM</span>Priya Mehta</span></td><td>Data Science with Python</td><td>₹3,499</td><td>Oct 31, 2026</td><td><span class="status-pill paid">Paid</span></td></tr>
+                <tr><td>3</td><td><span class="table-person"><span class="person-avatar avatar-c">RV</span>Rohit Verma</span></td><td>Machine Learning A-Z</td><td>₹2,999</td><td>Oct 30, 2026</td><td><span class="status-pill paid">Paid</span></td></tr>
+                <tr><td>4</td><td><span class="table-person"><span class="person-avatar avatar-d">SK</span>Sneha Kapoor</span></td><td>Cyber Security Basics</td><td>₹1,999</td><td>Oct 30, 2026</td><td><span class="status-pill paid">Paid</span></td></tr>
+                <tr><td>5</td><td><span class="table-person"><span class="person-avatar avatar-e">KS</span>Karan Singh</span></td><td>React JS Complete Course</td><td>₹2,499</td><td>Oct 29, 2026</td><td><span class="status-pill paid">Paid</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-search d-none">No matching records found.</div>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="panel-heading"><h3>Recent Users</h3><a href="users.html">View All</a></div>
+          <div class="table-responsive">
+            <table class="table dashboard-table align-middle mb-0 searchable-table">
+              <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td><span class="table-person"><span class="person-avatar avatar-b">RG</span>Riya Gupta</span></td><td>riya@example.com</td><td><span class="role-pill student">Student</span></td><td>Oct 31, 2026</td></tr>
+                <tr><td>2</td><td><span class="table-person"><span class="person-avatar avatar-c">AK</span>Amit Kumar</span></td><td>amit@example.com</td><td><span class="role-pill faculty">Faculty</span></td><td>Oct 30, 2026</td></tr>
+                <tr><td>3</td><td><span class="table-person"><span class="person-avatar avatar-d">NS</span>Neha Sharma</span></td><td>neha@example.com</td><td><span class="role-pill student">Student</span></td><td>Oct 30, 2026</td></tr>
+                <tr><td>4</td><td><span class="table-person"><span class="person-avatar avatar-a">VP</span>Vikram Patel</span></td><td>vikram@example.com</td><td><span class="role-pill student">Student</span></td><td>Oct 29, 2026</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-search d-none">No matching records found.</div>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="panel-heading"><h3>Recent Courses</h3><a href="courses.html">View All</a></div>
+          <div class="table-responsive">
+            <table class="table dashboard-table align-middle mb-0 searchable-table">
+              <thead><tr><th>#</th><th>Course</th><th>Instructor</th><th>Category</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td><span class="course-cell"><span class="course-thumb thumb-blue"><i class="bi bi-code-slash"></i></span>Full Stack Web Development</span></td><td>Rahul Mehta</td><td>Web Development</td><td><span class="status-pill published">Published</span></td></tr>
+                <tr><td>2</td><td><span class="course-cell"><span class="course-thumb thumb-purple"><i class="bi bi-bar-chart-line"></i></span>Data Science with Python</span></td><td>Dr. Anjali Verma</td><td>Data Science</td><td><span class="status-pill published">Published</span></td></tr>
+                <tr><td>3</td><td><span class="course-cell"><span class="course-thumb thumb-cyan"><i class="bi bi-cpu"></i></span>Machine Learning A-Z</span></td><td>Prof. S. Iyer</td><td>AI & ML</td><td><span class="status-pill published">Published</span></td></tr>
+                <tr><td>4</td><td><span class="course-cell"><span class="course-thumb thumb-green"><i class="bi bi-shield-lock"></i></span>Cyber Security Basics</span></td><td>Karan Malhotra</td><td>Cyber Security</td><td><span class="status-pill draft">Draft</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-search d-none">No matching records found.</div>
+        </article>
+      </section>
+      <footer class="footer-line"><span>© 2026 Edunest. All rights reserved.</span><span>Admin Console <i class="bi bi-circle-fill"></i> System operational</span></footer>
     </div>
+  </main>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-    <script src="admin.js"></script>
+<div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="dashboardToast" class="toast border-0" role="alert"><div class="d-flex"><div class="toast-body" id="toastMessage"></div><button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="admin.js"></script>
 </body>
-
-</html
+</html>

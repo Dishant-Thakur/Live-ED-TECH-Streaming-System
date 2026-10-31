@@ -1,6 +1,5 @@
 const forgot_password = function(req, res, next) {
     let { email, newPassword, confirmPassword } = req.body;
-
     if (!email || !newPassword || !confirmPassword) {
         return res.status(400).json({
             status: false,
